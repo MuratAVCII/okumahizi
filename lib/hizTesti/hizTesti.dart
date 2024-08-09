@@ -1,20 +1,17 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:Hizlanio/hizTesti/OkumaMetni.dart';
 import 'package:Hizlanio/hizTesti/metinlervesorular.dart';
 import 'package:flutter/material.dart';
-import 'OkumaMetni.dart';
-import "package:Hizlanio/hizTesti/hizTesti.dart";
 
 class HizTesti extends StatefulWidget {
-  const HizTesti({Key? key}) : super(key: key);
+  const HizTesti({super.key});
 
   @override
   _HizTestiState createState() => _HizTestiState();
 }
 
 class _HizTestiState extends State<HizTesti> {
-  double _sliderValue = 0.0;
+  final double _sliderValue = 0.0;
   late Timer _timer;
   int counter = 3;
   bool showText = false;
@@ -38,12 +35,12 @@ class _HizTestiState extends State<HizTesti> {
         return StatefulBuilder(
           builder: (context, setState) {
             if (counter == 3) {
-              _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+              _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
                 if (counter == 1) {
                   setState(() {
                     counter--;
                   });
-                  Future.delayed(Duration(seconds: 1), () {
+                  Future.delayed(const Duration(seconds: 1), () {
                     Navigator.of(context).pop();
                     setState(() {
                       showText = true;
@@ -64,12 +61,12 @@ class _HizTestiState extends State<HizTesti> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              content: Container(
+              content: SizedBox(
                 height: MediaQuery.of(context).size.height / 6,
                 child: Center(
                   child: Text(
                     counter > 0 ? '$counter' : 'Başla!',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 50,
                       color: Colors.white,
                     ),
@@ -104,7 +101,7 @@ class _HizTestiState extends State<HizTesti> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Okuma Hızınız ve Anlama Yüzdeniz"),
+          title: const Text("Okuma Hızınız ve Anlama Yüzdeniz"),
           content: Text(
               "Dakikada $readingSpeed kelime okudunuz.\n\n$message\n\nAnlama yüzdeniz: %$comprehensionScore"),
           actions: [
@@ -113,7 +110,7 @@ class _HizTestiState extends State<HizTesti> {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
-              child: Text("Tamam"),
+              child: const Text("Tamam"),
             ),
           ],
         );
@@ -127,8 +124,8 @@ class _HizTestiState extends State<HizTesti> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Metni Okumayı Tamamladınız"),
-          content: Text("Şimdi sıra anlama testini çözmede."),
+          title: const Text("Metni Okumayı Tamamladınız"),
+          content: const Text("Şimdi sıra anlama testini çözmede."),
           actions: [
             TextButton(
               onPressed: () {
@@ -139,7 +136,7 @@ class _HizTestiState extends State<HizTesti> {
                   userAnswers.clear();
                 });
               },
-              child: Text("Anlama Testine Geç"),
+              child: const Text("Anlama Testine Geç"),
             ),
           ],
         );
@@ -175,13 +172,13 @@ class _HizTestiState extends State<HizTesti> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
-    Color pageColor = Color(0xFFD5B59C);
+    Color pageColor = const Color(0xFFD5B59C);
 
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -205,7 +202,7 @@ class _HizTestiState extends State<HizTesti> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -223,7 +220,7 @@ class _HizTestiState extends State<HizTesti> {
                               ),
                               ElevatedButton(
                                 onPressed: finishReading,
-                                child: Text("Okumayı Bitir"),
+                                child: const Text("Okumayı Bitir"),
                               ),
                             ],
                           ),
@@ -258,8 +255,8 @@ class _HizTestiState extends State<HizTesti> {
                                       },
                                       child: Container(
                                         margin:
-                                            EdgeInsets.symmetric(horizontal: 4),
-                                        padding: EdgeInsets.all(8),
+                                            const EdgeInsets.symmetric(horizontal: 4),
+                                        padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
                                           shape: BoxShape.rectangle,
                                           borderRadius:
@@ -293,7 +290,7 @@ class _HizTestiState extends State<HizTesti> {
                                 SizedBox(height: sidePadding),
                                 Text(
                                   "Soru : ${currentQuestionIndex + 1}/${selectedMetin!.questions.length}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
                                   ),
@@ -347,9 +344,9 @@ class _HizTestiState extends State<HizTesti> {
                                                 });
                                               },
                                               child: Container(
-                                                margin: EdgeInsets.symmetric(
+                                                margin: const EdgeInsets.symmetric(
                                                     vertical: 8),
-                                                padding: EdgeInsets.all(12),
+                                                padding: const EdgeInsets.all(12),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
@@ -365,7 +362,7 @@ class _HizTestiState extends State<HizTesti> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      optionLabel + ") ",
+                                                      "$optionLabel) ",
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -414,16 +411,16 @@ class _HizTestiState extends State<HizTesti> {
                                                 });
                                               }
                                             : null,
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.arrow_back,
                                           color: Colors.white,
                                         ),
-                                        label: Text(
+                                        label: const Text(
                                           "",
                                           style: TextStyle(color: Colors.white),
                                         ),
                                         style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 16, horizontal: 16),
                                           backgroundColor:
                                               currentQuestionIndex > 0
@@ -432,7 +429,7 @@ class _HizTestiState extends State<HizTesti> {
                                         ),
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Expanded(
                                       child: Center(
                                         child: ElevatedButton.icon(
@@ -465,7 +462,7 @@ class _HizTestiState extends State<HizTesti> {
                                                   context: context,
                                                   builder: (context) =>
                                                       AlertDialog(
-                                                    title: Text("Uyarı"),
+                                                    title: const Text("Uyarı"),
                                                     content: Text(
                                                         "Lütfen tüm soruları cevaplayınız. Eksik sorular: ${unansweredQuestions.join(", ")}"),
                                                     actions: [
@@ -474,7 +471,7 @@ class _HizTestiState extends State<HizTesti> {
                                                           Navigator.of(context)
                                                               .pop();
                                                         },
-                                                        child: Text("Tamam"),
+                                                        child: const Text("Tamam"),
                                                       ),
                                                     ],
                                                   ),
@@ -499,7 +496,7 @@ class _HizTestiState extends State<HizTesti> {
                                             ),
                                           ),
                                           style: ElevatedButton.styleFrom(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 vertical: 16, horizontal: 16),
                                             backgroundColor: Colors
                                                 .green, // Text rengini beyaz yapar
@@ -507,7 +504,7 @@ class _HizTestiState extends State<HizTesti> {
                                         ),
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     Expanded(
                                       child: ElevatedButton.icon(
                                         onPressed: currentQuestionIndex <
@@ -520,15 +517,15 @@ class _HizTestiState extends State<HizTesti> {
                                                 });
                                               }
                                             : null,
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.arrow_forward,
                                           color: Colors.white,
                                         ),
-                                        label: Text("",
+                                        label: const Text("",
                                             style:
                                                 TextStyle(color: Colors.white)),
                                         style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 16, horizontal: 16),
                                           backgroundColor:
                                               currentQuestionIndex <

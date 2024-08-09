@@ -1,5 +1,5 @@
 import 'package:Hizlanio/widgets/CustomAppBar.dart';
-import 'package:Hizlanio/widgets/CustomEndDrawer.dart';
+import 'package:Hizlanio/widgets/custom_end_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -8,7 +8,7 @@ import 'main.dart';
 import 'dart:math' as math;
 
 class Girisyap extends StatelessWidget {
-  const Girisyap({Key? key}) : super(key: key);
+  const Girisyap({super.key});
 
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -27,7 +27,7 @@ class Girisyap extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final rowHeight = screenHeight / 10;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
 
     double getResponsiveTextSize() {
       if (screenWidth < 600) {
@@ -41,7 +41,7 @@ class Girisyap extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/Arka Plan.png"),
           fit: BoxFit.cover,
@@ -56,7 +56,7 @@ class Girisyap extends StatelessWidget {
               sidePadding: sidePadding,
               screenWidth: screenWidth,
               rowHeight: rowHeight,
-              actions: [],
+              actions: const [],
             ),
           ),
         ),
@@ -92,7 +92,7 @@ class Girisyap extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     IconButton(
-                                      icon: Icon(Icons.arrow_back),
+                                      icon: const Icon(Icons.arrow_back),
                                       iconSize: screenWidth * 0.05,
                                       disabledColor: Colors.white,
                                       color: Colors.white,
@@ -101,7 +101,8 @@ class Girisyap extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AnaSayfa(title: "title")));
+                                                    const AnaSayfa(
+                                                        title: "title")));
                                       },
                                     ),
                                     Text(
@@ -116,12 +117,12 @@ class Girisyap extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Padding(
                                 padding: EdgeInsets.all(screenWidth / 50),
                                 child: Column(
                                   children: [
-                                    TextField(
+                                    const TextField(
                                       decoration: InputDecoration(
                                         labelText: 'Kullanıcı Adı',
                                         labelStyle:
@@ -138,7 +139,7 @@ class Girisyap extends StatelessWidget {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     SizedBox(height: screenHeight / 50),
-                                    TextField(
+                                    const TextField(
                                       decoration: InputDecoration(
                                         labelText: 'E-Posta',
                                         labelStyle:
@@ -155,7 +156,7 @@ class Girisyap extends StatelessWidget {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     SizedBox(height: screenHeight / 50),
-                                    TextField(
+                                    const TextField(
                                       decoration: InputDecoration(
                                         labelText: 'Şifre',
                                         labelStyle:
@@ -177,14 +178,14 @@ class Girisyap extends StatelessWidget {
                                       onPressed: () {
                                         // Giriş yap butonuna basıldığında yapılacak işlemler
                                       },
-                                      child: Text('Giriş Yap'),
+                                      child: const Text('Giriş Yap'),
                                     ),
                                     SizedBox(height: screenHeight / 50),
                                     ElevatedButton(
                                       onPressed: () {
                                         signInWithGoogle();
                                       },
-                                      child: Text('Google ile Giriş Yap'),
+                                      child: const Text('Google ile Giriş Yap'),
                                     ),
                                     SizedBox(height: screenHeight / 50),
                                     TextButton(
@@ -192,10 +193,11 @@ class Girisyap extends StatelessWidget {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Kayitol()),
+                                              builder: (context) =>
+                                                  const Kayitol()),
                                         );
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         'Hesabınız yok mu? Kayıt Ol',
                                         style: TextStyle(color: Colors.blue),
                                       ),
@@ -203,7 +205,7 @@ class Girisyap extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Spacer()
+                              const Spacer()
                             ],
                           ),
                         ),

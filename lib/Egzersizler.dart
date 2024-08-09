@@ -6,10 +6,10 @@ import 'package:Hizlanio/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:Hizlanio/widgets/CustomAppBar.dart';
-import 'package:Hizlanio/widgets/CustomEndDrawer.dart';
+import 'package:Hizlanio/widgets/custom_end_drawer.dart';
 
 class Egzersizler extends StatelessWidget {
-  const Egzersizler({Key? key}) : super(key: key);
+  const Egzersizler({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class Egzersizler extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final rowHeight = screenHeight / 10;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
-    Color buttonColor = Color.fromARGB(255, 48, 73, 174);
+    const maxWidth = 1280.0;
+    Color buttonColor = const Color.fromARGB(255, 48, 73, 174);
 
     double getResponsiveTextSize() {
       if (screenWidth < 600) {
@@ -41,7 +41,7 @@ class Egzersizler extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/Arka Plan.png"),
           fit: BoxFit.cover,
@@ -56,7 +56,7 @@ class Egzersizler extends StatelessWidget {
               sidePadding: sidePadding,
               screenWidth: screenWidth,
               rowHeight: rowHeight,
-              actions: [],
+              actions: const [],
             ),
           ),
         ),
@@ -92,7 +92,7 @@ class Egzersizler extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
-                                    icon: Icon(Icons.arrow_back),
+                                    icon: const Icon(Icons.arrow_back),
                                     iconSize: screenWidth * 0.05,
                                     disabledColor: Colors.white,
                                     color: Colors.white,
@@ -101,7 +101,7 @@ class Egzersizler extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                AnaSayfa(title: "title")),
+                                                const AnaSayfa(title: "title")),
                                       );
                                     },
                                   ),
@@ -136,7 +136,7 @@ class Egzersizler extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Gozegzersizleri()),
+                                                      const Gozegzersizleri()),
                                             );
                                             print(
                                                 "GÖZ EGZERSİZLERİ Butonuna Basıldı");
@@ -162,7 +162,7 @@ class Egzersizler extends StatelessWidget {
                                               (Set<MaterialState> states) {
                                                 if (states.contains(
                                                     MaterialState.hovered)) {
-                                                  return BorderSide(
+                                                  return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2);
                                                 }
@@ -224,7 +224,7 @@ class Egzersizler extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      KelimeOkumaEgzersizleri()),
+                                                      const KelimeOkumaEgzersizleri()),
                                             );
                                           },
                                           style: ButtonStyle(
@@ -248,7 +248,7 @@ class Egzersizler extends StatelessWidget {
                                               (Set<MaterialState> states) {
                                                 if (states.contains(
                                                     MaterialState.hovered)) {
-                                                  return BorderSide(
+                                                  return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2);
                                                 }
@@ -306,7 +306,7 @@ class Egzersizler extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      MetinOkumaEgzersizleri()),
+                                                      const MetinOkumaEgzersizleri()),
                                             );
                                           },
                                           style: ButtonStyle(
@@ -330,7 +330,7 @@ class Egzersizler extends StatelessWidget {
                                               (Set<MaterialState> states) {
                                                 if (states.contains(
                                                     MaterialState.hovered)) {
-                                                  return BorderSide(
+                                                  return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2);
                                                 }
@@ -388,7 +388,7 @@ class Egzersizler extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      interaktifOkumaEgzersizleri()),
+                                                      const interaktifOkumaEgzersizleri()),
                                             );
                                           },
                                           style: ButtonStyle(
@@ -412,7 +412,7 @@ class Egzersizler extends StatelessWidget {
                                               (Set<MaterialState> states) {
                                                 if (states.contains(
                                                     MaterialState.hovered)) {
-                                                  return BorderSide(
+                                                  return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2);
                                                 }

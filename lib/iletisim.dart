@@ -1,6 +1,5 @@
-import 'package:Hizlanio/girisyap.dart';
 import 'package:Hizlanio/widgets/CustomAppBar.dart';
-import 'package:Hizlanio/widgets/CustomEndDrawer.dart';
+import 'package:Hizlanio/widgets/custom_end_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -10,7 +9,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
 
 class Iletisim extends StatefulWidget {
-  const Iletisim({Key? key}) : super(key: key);
+  const Iletisim({super.key});
 
   @override
   _IletisimState createState() => _IletisimState();
@@ -47,8 +46,8 @@ class _IletisimState extends State<Iletisim> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Center(child: Text('İletildi')),
-          content: Text(
+          title: const Center(child: Text('İletildi')),
+          content: const Text(
               'Mesajınız başarıyla gönderildi. En kısa sürede sizlere geri dönüş yapılacaktır.'),
           actions: [
             TextButton(
@@ -57,10 +56,10 @@ class _IletisimState extends State<Iletisim> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => AnaSayfa(title: "title")),
+                      builder: (context) => const AnaSayfa(title: "title")),
                 );
               },
-              child: Text('Anasayfaya Dön'),
+              child: const Text('Anasayfaya Dön'),
             ),
           ],
         );
@@ -85,7 +84,7 @@ class _IletisimState extends State<Iletisim> {
     final screenWidth = MediaQuery.of(context).size.width;
     final rowHeight = screenHeight / 10;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
 
     double getResponsiveTextSize() {
       if (screenWidth < 600) {
@@ -99,7 +98,7 @@ class _IletisimState extends State<Iletisim> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/Arka Plan.png"),
           fit: BoxFit.cover,
@@ -114,7 +113,7 @@ class _IletisimState extends State<Iletisim> {
               sidePadding: sidePadding,
               screenWidth: screenWidth,
               rowHeight: rowHeight,
-              actions: [],
+              actions: const [],
             ),
           ),
         ),
@@ -152,7 +151,7 @@ class _IletisimState extends State<Iletisim> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       IconButton(
-                                        icon: Icon(Icons.arrow_back),
+                                        icon: const Icon(Icons.arrow_back),
                                         iconSize: screenWidth * 0.05,
                                         disabledColor: Colors.white,
                                         color: Colors.white,
@@ -161,7 +160,7 @@ class _IletisimState extends State<Iletisim> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      AnaSayfa(
+                                                      const AnaSayfa(
                                                           title: "title")));
                                         },
                                       ),
@@ -177,7 +176,7 @@ class _IletisimState extends State<Iletisim> {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Padding(
                                   padding: EdgeInsets.all(screenWidth / 50),
                                   child: Column(
@@ -186,7 +185,7 @@ class _IletisimState extends State<Iletisim> {
                                         children: [
                                           Expanded(
                                             child: TextFormField(
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                 labelText: 'Ad',
                                                 labelStyle: TextStyle(
                                                     color: Colors.grey),
@@ -201,7 +200,7 @@ class _IletisimState extends State<Iletisim> {
                                                       color: Colors.white),
                                                 ),
                                               ),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white),
                                               validator: (value) {
                                                 if (value == null ||
@@ -218,7 +217,7 @@ class _IletisimState extends State<Iletisim> {
                                           SizedBox(width: screenWidth / 50),
                                           Expanded(
                                             child: TextFormField(
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                 labelText: 'Soyad',
                                                 labelStyle: TextStyle(
                                                     color: Colors.grey),
@@ -233,7 +232,7 @@ class _IletisimState extends State<Iletisim> {
                                                       color: Colors.white),
                                                 ),
                                               ),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white),
                                               validator: (value) {
                                                 if (value == null ||
@@ -254,7 +253,7 @@ class _IletisimState extends State<Iletisim> {
                                         children: [
                                           Expanded(
                                             child: TextFormField(
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                 labelText: 'E-Posta',
                                                 labelStyle: TextStyle(
                                                     color: Colors.grey),
@@ -269,7 +268,7 @@ class _IletisimState extends State<Iletisim> {
                                                       color: Colors.white),
                                                 ),
                                               ),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white),
                                               keyboardType:
                                                   TextInputType.emailAddress,
@@ -288,7 +287,7 @@ class _IletisimState extends State<Iletisim> {
                                           SizedBox(width: screenWidth / 50),
                                           Expanded(
                                             child: TextFormField(
-                                              decoration: InputDecoration(
+                                              decoration: const InputDecoration(
                                                 labelText: 'Telefon Numarası',
                                                 labelStyle: TextStyle(
                                                     color: Colors.grey),
@@ -303,7 +302,7 @@ class _IletisimState extends State<Iletisim> {
                                                       color: Colors.white),
                                                 ),
                                               ),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white),
                                               keyboardType: TextInputType.phone,
                                               inputFormatters: [
@@ -330,7 +329,7 @@ class _IletisimState extends State<Iletisim> {
                                       ),
                                       SizedBox(height: screenHeight / 50),
                                       DropdownButtonFormField<String>(
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           labelText: 'Kullanıcı Türü',
                                           labelStyle:
                                               TextStyle(color: Colors.grey),
@@ -344,14 +343,15 @@ class _IletisimState extends State<Iletisim> {
                                           ),
                                         ),
                                         dropdownColor: Colors.black,
-                                        style: TextStyle(color: Colors.white),
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                         value: _userType,
                                         items: ['Öğrenci', 'Öğretmen']
                                             .map((String value) {
                                           return DropdownMenuItem<String>(
                                             value: value,
                                             child: Text(value,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.grey)),
                                           );
                                         }).toList(),
@@ -363,7 +363,7 @@ class _IletisimState extends State<Iletisim> {
                                       ),
                                       SizedBox(height: screenHeight / 50),
                                       TextFormField(
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           labelText: 'Konu',
                                           labelStyle:
                                               TextStyle(color: Colors.grey),
@@ -376,7 +376,8 @@ class _IletisimState extends State<Iletisim> {
                                                 BorderSide(color: Colors.white),
                                           ),
                                         ),
-                                        style: TextStyle(color: Colors.white),
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
                                             return 'Lütfen konuyu girin';
@@ -389,7 +390,7 @@ class _IletisimState extends State<Iletisim> {
                                       ),
                                       SizedBox(height: screenHeight / 50),
                                       TextFormField(
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           labelText:
                                               'Belirtmek istediğiniz metni yazınız',
                                           labelStyle:
@@ -406,7 +407,8 @@ class _IletisimState extends State<Iletisim> {
                                               color: Colors
                                                   .white), // Karakter sayacı stilini belirler
                                         ),
-                                        style: TextStyle(color: Colors.white),
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                         maxLines: null,
                                         maxLength: 1000,
                                         validator: (value) {
@@ -427,12 +429,12 @@ class _IletisimState extends State<Iletisim> {
                                       SizedBox(height: screenHeight / 50),
                                       ElevatedButton(
                                         onPressed: _sendEmail,
-                                        child: Text('Mesajımı İlet'),
+                                        child: const Text('Mesajımı İlet'),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                               ],
                             ),
                           ),
@@ -463,11 +465,11 @@ class _PhoneNumberFormatter extends TextInputFormatter {
 
     String formattedText = '';
 
-    if (text.length >= 1) {
+    if (text.isNotEmpty) {
       formattedText += '(0';
     }
     if (text.length >= 4) {
-      formattedText += text.substring(1, 4) + ') ';
+      formattedText += '${text.substring(1, 4)}) ';
     } else if (text.length > 1) {
       formattedText += text.substring(1);
     }
@@ -477,14 +479,14 @@ class _PhoneNumberFormatter extends TextInputFormatter {
       formattedText += text.substring(4);
     }
     if (text.length >= 9) {
-      formattedText += '-' + text.substring(7, 9);
+      formattedText += '-${text.substring(7, 9)}';
     } else if (text.length > 7) {
-      formattedText += '-' + text.substring(7);
+      formattedText += '-${text.substring(7)}';
     }
     if (text.length >= 11) {
-      formattedText += '-' + text.substring(9, 11);
+      formattedText += '-${text.substring(9, 11)}';
     } else if (text.length > 9) {
-      formattedText += '-' + text.substring(9);
+      formattedText += '-${text.substring(9)}';
     }
 
     return TextEditingValue(
@@ -495,7 +497,7 @@ class _PhoneNumberFormatter extends TextInputFormatter {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: Iletisim(),
   ));
 }

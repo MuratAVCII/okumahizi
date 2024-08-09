@@ -1,8 +1,4 @@
 import 'package:Hizlanio/Egzersizler.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Ortadauckelime.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Ortadaikikelime.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Rastgeleikikelime.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Rastgeleuckelime.dart';
 import 'package:Hizlanio/Egzersizler/MetinOkumaEgzersizleri/Acilanmetin.dart';
 import 'package:Hizlanio/Egzersizler/MetinOkumaEgzersizleri/BoyananKelimeler.dart';
 import 'package:Hizlanio/Egzersizler/MetinOkumaEgzersizleri/Kirmizi.dart';
@@ -15,14 +11,14 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class MetinOkumaEgzersizleri extends StatelessWidget {
-  const MetinOkumaEgzersizleri({Key? key}) : super(key: key);
+  const MetinOkumaEgzersizleri({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
     final minButtonWidth = screenWidth / 8;
     final minButtonHeight = screenHeight / 16;
 
@@ -40,49 +36,49 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
         "text": ["AÇILAN KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AcilanMetin()));
+              context, MaterialPageRoute(builder: (context) => const AcilanMetin()));
         }
       },
       {
         "text": ["BOYANAN KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => BoyananKelimeler()));
+              MaterialPageRoute(builder: (context) => const BoyananKelimeler()));
         }
       },
       {
         "text": ["Kaybolan KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => KaybolanKelimeler()));
+              MaterialPageRoute(builder: (context) => const KaybolanKelimeler()));
         }
       },
       {
         "text": ["Vurgulanan KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => VurgulananKelimeler()));
+              MaterialPageRoute(builder: (context) => const VurgulananKelimeler()));
         }
       },
       {
         "text": ["Ortada Çıkan KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => OrtadaCikanKelime()));
+              MaterialPageRoute(builder: (context) => const OrtadaCikanKelime()));
         }
       },
       {
         "text": ["Rastgele Yerlerde Çıkan KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => RastgeleCikanKelime()));
+              MaterialPageRoute(builder: (context) => const RastgeleCikanKelime()));
         }
       },
       {
         "text": ["Kırmızıya Odaklan Çıkan KELİMELERİ OKU", ""],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Kirmizi()));
+              context, MaterialPageRoute(builder: (context) => const Kirmizi()));
         }
       },
       // Diğer butonlar için benzer yapı devam eder...
@@ -92,7 +88,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -110,7 +106,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: screenHeight / 10,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,7 +130,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  AnaSayfa(title: "title")));
+                                                  const AnaSayfa(title: "title")));
                                     },
                                     child: Text("Anasayfa",
                                         style: TextStyle(
@@ -176,9 +172,9 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: screenWidth * 0.01),
                             child: DropdownButton<String>(
-                              icon: Icon(Icons.arrow_drop_down),
+                              icon: const Icon(Icons.arrow_drop_down),
                               iconEnabledColor: Colors.white,
-                              underline: SizedBox(),
+                              underline: const SizedBox(),
                               items: <String>['Giriş yap', 'Kayıt ol']
                                   .map((String value) {
                                 return DropdownMenuItem<String>(
@@ -226,7 +222,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         IconButton(
-                                          icon: Icon(Icons.arrow_back),
+                                          icon: const Icon(Icons.arrow_back),
                                           iconSize: screenWidth * 0.05,
                                           disabledColor: Colors.white,
                                           color: Colors.white,
@@ -235,7 +231,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Egzersizler()),
+                                                      const Egzersizler()),
                                             );
                                           },
                                         ),
@@ -266,7 +262,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                                       crossAxisSpacing: screenWidth / 40,
                                       mainAxisSpacing: screenHeight / 40,
                                       shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       children: List.generate(buttonList.length,
                                           (index) {
                                         return MouseRegion(
@@ -298,7 +294,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                                                 (Set<MaterialState> states) {
                                                   if (states.contains(
                                                       MaterialState.hovered)) {
-                                                    return BorderSide(
+                                                    return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2,
                                                     );

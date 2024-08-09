@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 class NesneTakip extends StatefulWidget {
-  const NesneTakip({Key? key}) : super(key: key);
+  const NesneTakip({super.key});
 
   @override
   _NesneTakipState createState() => _NesneTakipState();
@@ -18,7 +18,7 @@ class _NesneTakipState extends State<NesneTakip> {
   Timer? _timer;
   Timer? _movementTimer;
   bool _paused = false;
-  List<int> _moveSequence = []; // Sequence for movement
+  final List<int> _moveSequence = []; // Sequence for movement
   int _currentIndex = 0; // Index for current movement in sequence
   //final Random _random = Random();
 
@@ -42,7 +42,7 @@ class _NesneTakipState extends State<NesneTakip> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -54,9 +54,9 @@ class _NesneTakipState extends State<NesneTakip> {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.all(16.0),
+                    margin: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: Color(0xFFD5B59C),
+                      color: const Color(0xFFD5B59C),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: Center(
@@ -71,10 +71,10 @@ class _NesneTakipState extends State<NesneTakip> {
                               Text(
                                 _formatDuration(
                                     Duration(seconds: _remainingSeconds)),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.bold),
                               ),
-                              Container(
+                              SizedBox(
                                 width: gridWidth,
                                 height: gridHeight,
                                 child: CustomPaint(
@@ -93,7 +93,7 @@ class _NesneTakipState extends State<NesneTakip> {
                                   });
                                   _showPauseDialog(context);
                                 },
-                                child: Text('Durdur'),
+                                child: const Text('Durdur'),
                               ),
                             ],
                           ],
@@ -119,12 +119,12 @@ class _NesneTakipState extends State<NesneTakip> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Bu oyunda, kırmızı noktayı gözlerinizle takip etmeniz gerekmektedir.',
                     textAlign: TextAlign.center,
@@ -142,7 +142,7 @@ class _NesneTakipState extends State<NesneTakip> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Süreniz : ${formatDuration(_workDuration)} Dakika'),
                         Slider(
@@ -157,7 +157,7 @@ class _NesneTakipState extends State<NesneTakip> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız : ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -165,7 +165,7 @@ class _NesneTakipState extends State<NesneTakip> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
@@ -184,14 +184,14 @@ class _NesneTakipState extends State<NesneTakip> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -244,7 +244,7 @@ class _NesneTakipState extends State<NesneTakip> {
 
   void _startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!_paused && _remainingSeconds > 0) {
         setState(() {
           _remainingSeconds--;
@@ -286,16 +286,16 @@ class _NesneTakipState extends State<NesneTakip> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Oyun Durdu',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -309,7 +309,7 @@ class _NesneTakipState extends State<NesneTakip> {
                         });
                         _showGameOverDialog(context);
                       },
-                      child: Text('Çalışmayı Bitir'),
+                      child: const Text('Çalışmayı Bitir'),
                     ),
                     TextButton(
                       onPressed: () {
@@ -320,7 +320,7 @@ class _NesneTakipState extends State<NesneTakip> {
                         _startTimer();
                         _startMovement();
                       },
-                      child: Text('Devam Et'),
+                      child: const Text('Devam Et'),
                     ),
                   ],
                 ),
@@ -341,26 +341,26 @@ class _NesneTakipState extends State<NesneTakip> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Çalışma Bitti!',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   'Toplam Geçen Süre: ${_formatDuration(Duration(seconds: _totalSeconds))}',
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   'Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x',
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -369,14 +369,14 @@ class _NesneTakipState extends State<NesneTakip> {
                         Navigator.pop(context);
                         _restartWork();
                       },
-                      child: Text('Tekrar Oyna'),
+                      child: const Text('Tekrar Oyna'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                   ],
                 ),
@@ -457,7 +457,7 @@ class GridPainter extends CustomPainter {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: NesneTakip(),
   ));

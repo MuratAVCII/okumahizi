@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class AcilanMetin extends StatefulWidget {
-  const AcilanMetin({Key? key}) : super(key: key);
+  const AcilanMetin({super.key});
 
   @override
   _AcilanMetinState createState() => _AcilanMetinState();
@@ -16,7 +16,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
   bool _paused = false;
   Timer? _timer;
   int _wordCount = 1;
-  List<String> _selectedWords = [];
+  final List<String> _selectedWords = [];
   final List<String> _textEntries = [
     'Metin 1: Harika, kodu deneyip geri bildirimlerinizi paylaşabilirsiniz. Kodun açıklaması ve işlevleri hakkında sorularınız olursa veya eklememi istediğiniz başka özellikler varsa, lütfen bana bildirin. Kodun doğru çalışması ve isteklerinize uygun olup olmadığını kontrol etmek için geri bildirimlerinizi bekliyorum.' *
         50,
@@ -53,7 +53,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
               height: containerHeight,
               padding: EdgeInsets.all(screenWidth / 30),
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Column(
@@ -79,7 +79,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
                                 (containerWidth * _fontSize))
                             .ceil(),
                         itemBuilder: (context, index) {
-                          return Container(
+                          return SizedBox(
                             width: double.infinity,
                             height: double.infinity,
                             child: CustomPaint(
@@ -108,7 +108,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
                         });
                         _showPauseDialog(context);
                       },
-                      child: Text('Durdur'),
+                      child: const Text('Durdur'),
                     ),
                   ],
                 ],
@@ -129,12 +129,12 @@ class _AcilanMetinState extends State<AcilanMetin> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Bu oyunda, seçilen metni belirli bir hızda okuyacaksınız.',
                     textAlign: TextAlign.center,
@@ -145,9 +145,9 @@ class _AcilanMetinState extends State<AcilanMetin> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         DropdownButton<String>(
-                          hint: Text("Bir metin seçin"),
+                          hint: const Text("Bir metin seçin"),
                           value: _selectedTextEntry,
                           items: _textEntries.map((String value) {
                             return DropdownMenuItem<String>(
@@ -161,7 +161,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Kelime Sayısı: $_wordCount'),
                         Slider(
                           value: _wordCount.toDouble(),
@@ -175,7 +175,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -183,14 +183,14 @@ class _AcilanMetinState extends State<AcilanMetin> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Punto: ${_fontSize.toInt()}'),
                         Slider(
                           value: _fontSize,
@@ -217,16 +217,16 @@ class _AcilanMetinState extends State<AcilanMetin> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    MetinOkumaEgzersizleri()));
+                                    const MetinOkumaEgzersizleri()));
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -288,22 +288,22 @@ class _AcilanMetinState extends State<AcilanMetin> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Durdu'),
-          content: Text('Çalışmayı bitir veya devam et?'),
+          title: const Text('Oyun Durdu'),
+          content: const Text('Çalışmayı bitir veya devam et?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _showCompletionDialog();
               },
-              child: Text('Çalışmayı Bitir'),
+              child: const Text('Çalışmayı Bitir'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _resumeWork();
               },
-              child: Text('Devam Et'),
+              child: const Text('Devam Et'),
             ),
           ],
         );
@@ -329,14 +329,14 @@ class _AcilanMetinState extends State<AcilanMetin> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Çalışma Bitti'),
+          title: const Text('Çalışma Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                   'Toplam Okuma Süresi: ${_totalDuration!.inMinutes.toString().padLeft(2, '0')}:${(_totalDuration!.inSeconds % 60).toString().padLeft(2, '0')} Dakika'),
               Text('Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
-              Text('Açılan Kelime Sayısı:  ')
+              const Text('Açılan Kelime Sayısı:  ')
             ],
           ),
           actions: [
@@ -345,19 +345,19 @@ class _AcilanMetinState extends State<AcilanMetin> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MetinOkumaEgzersizleri()));
+                        builder: (context) => const MetinOkumaEgzersizleri()));
                 setState(() {
                   _isWorking = false;
                 });
               },
-              child: Text('Geri Dön'),
+              child: const Text('Geri Dön'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _restartWork();
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
           ],
         );
@@ -416,7 +416,7 @@ class TextPainterCustom extends CustomPainter {
     if (textHeight > containerHeight) {
       onPageFull();
     } else {
-      textPainter.paint(canvas, Offset(0, 0));
+      textPainter.paint(canvas, const Offset(0, 0));
     }
   }
 

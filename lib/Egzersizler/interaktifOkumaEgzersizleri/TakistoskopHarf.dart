@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:math';
 
 class TakistoskopHarf extends StatefulWidget {
+  const TakistoskopHarf({super.key});
+
   @override
   _TakistoskopHarfState createState() => _TakistoskopHarfState();
 }
@@ -28,7 +30,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
     showDialog(
       context: context,
       builder: (context) {
-        double _difficulty = 1.0; // Default difficulty level: Kolay
+        double difficulty = 1.0; // Default difficulty level: Kolay
         return StatefulBuilder(
           builder: (context, setState) {
             return Dialog(
@@ -36,29 +38,29 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Container(
-                constraints: BoxConstraints(maxWidth: 400),
-                padding: EdgeInsets.all(16.0),
+                constraints: const BoxConstraints(maxWidth: 400),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    const Text(
                       'Zorluk Seviyesini Seçin',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Slider(
-                      value: _difficulty,
+                      value: difficulty,
                       min: 1.0,
                       max: 3.0,
                       divisions: 2,
-                      label: _difficulty == 1.0
+                      label: difficulty == 1.0
                           ? 'Kolay'
-                          : _difficulty == 2.0
+                          : difficulty == 2.0
                               ? 'Orta'
                               : 'Zor',
                       onChanged: (value) {
                         setState(() {
-                          _difficulty = value;
+                          difficulty = value;
                         });
                       },
                     ),
@@ -70,14 +72,14 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
                             Navigator.pop(context);
                             Navigator.pop(context);
                           },
-                          child: Text('Geri Dön'),
+                          child: const Text('Geri Dön'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            _startGame(_difficulty);
+                            _startGame(difficulty);
                           },
-                          child: Text('Oyuna Başla'),
+                          child: const Text('Oyuna Başla'),
                         ),
                       ],
                     ),
@@ -130,7 +132,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
       _correctAnswer = _currentString; // Save the correct answer
     });
 
-    Timer(Duration(milliseconds: 300), () {
+    Timer(const Duration(milliseconds: 300), () {
       setState(() {
         _currentString = '';
       });
@@ -164,12 +166,12 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
       context: context,
       barrierDismissible: false, // Dialog dışında tıklanarak kapatılmasın
       builder: (context) {
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.pop(context);
           if (_isGameOver) {
             _showResultsDialog();
           } else {
-            Future.delayed(Duration(milliseconds: 1500), () {
+            Future.delayed(const Duration(milliseconds: 1500), () {
               _currentQuestionIndex++;
               _showNextString();
             });
@@ -197,10 +199,10 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          title: Text('Gördüğünüz harfleri girin'),
+          title: const Text('Gördüğünüz harfleri girin'),
           content: TextField(
             controller: _textEditingController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Harfleri girin',
             ),
@@ -215,7 +217,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
                 Navigator.pop(context);
                 _checkAnswer();
               },
-              child: Text('Gönder'),
+              child: const Text('Gönder'),
             ),
           ],
         );
@@ -230,11 +232,11 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Bitti'),
+          title: const Text('Oyun Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Toplam Soru Sayısı: 10'),
+              const Text('Toplam Soru Sayısı: 10'),
               Text('Doğru Sayısı: $_correctAnswers'),
               Text('Yanlış Sayısı: $_incorrectAnswers'),
               Text('Başarı Oranı: ${successRate.toStringAsFixed(1)}%'),
@@ -245,16 +247,16 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => TakistoskopHarf()));
+                    MaterialPageRoute(builder: (context) => const TakistoskopHarf()));
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: Text('Geri Dön'),
+              child: const Text('Geri Dön'),
             ),
           ],
         );
@@ -278,7 +280,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -294,7 +296,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
                   height: MediaQuery.of(context).size.height * 0.9,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Color(0xFFD5B59C),
+                    color: const Color(0xFFD5B59C),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: Column(
@@ -307,17 +309,17 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
                             Text(
                               _currentString.substring(
                                   0, _currentString.length ~/ 2),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                                 width: 40), // Aradaki boşluğu artırmak için
                             Text(
                               _currentString
                                   .substring(_currentString.length ~/ 2),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -345,7 +347,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: TakistoskopHarf(),
   ));

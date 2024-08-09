@@ -1,11 +1,10 @@
 import 'package:Hizlanio/Egzersizler/GozEgzersizleri/GozEgzersizleri.dart';
-import 'package:Hizlanio/Egzersizler/GozEgzersizleri/NesneTakipRandom.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 
 class YesilSay extends StatefulWidget {
-  const YesilSay({Key? key}) : super(key: key);
+  const YesilSay({super.key});
 
   @override
   _YesilSayState createState() => _YesilSayState();
@@ -23,7 +22,7 @@ class _YesilSayState extends State<YesilSay> {
   int _currentRow = 0;
   int _currentColumn = 0;
   final Random _random = Random();
-  int _greenCount = 0;
+  final int _greenCount = 0;
   int _totalGreenCount = 0;
   final TextEditingController _textEditingController = TextEditingController();
 
@@ -47,7 +46,7 @@ class _YesilSayState extends State<YesilSay> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -59,9 +58,9 @@ class _YesilSayState extends State<YesilSay> {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.all(16.0),
+                    margin: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      color: Color(0xFFD5B59C),
+                      color: const Color(0xFFD5B59C),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: Center(
@@ -76,10 +75,10 @@ class _YesilSayState extends State<YesilSay> {
                               Text(
                                 _formatDuration(
                                     Duration(seconds: _remainingSeconds)),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.bold),
                               ),
-                              Container(
+                              SizedBox(
                                 width: gridWidth,
                                 height: gridHeight,
                                 child: CustomPaint(
@@ -102,7 +101,7 @@ class _YesilSayState extends State<YesilSay> {
                                   });
                                   _showPauseDialog(context);
                                 },
-                                child: Text('Durdur'),
+                                child: const Text('Durdur'),
                               ),
                             ],
                           ],
@@ -128,12 +127,12 @@ class _YesilSayState extends State<YesilSay> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Bu oyunda, rastgele çıkan kırmızı ve yeşil noktaları gözlerinizle takip etmeniz gerekmektedir.',
                     textAlign: TextAlign.center,
@@ -151,7 +150,7 @@ class _YesilSayState extends State<YesilSay> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Süreniz : ${formatDuration(_workDuration)} Dakika'),
                         Slider(
@@ -166,7 +165,7 @@ class _YesilSayState extends State<YesilSay> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız : ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -174,7 +173,7 @@ class _YesilSayState extends State<YesilSay> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
@@ -193,14 +192,14 @@ class _YesilSayState extends State<YesilSay> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -225,7 +224,7 @@ class _YesilSayState extends State<YesilSay> {
 
   void _startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!_paused && _remainingSeconds > 0) {
         setState(() {
           _remainingSeconds--;
@@ -265,16 +264,16 @@ class _YesilSayState extends State<YesilSay> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Oyun Durdu',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -288,7 +287,7 @@ class _YesilSayState extends State<YesilSay> {
                         });
                         _showAnswerDialog(context);
                       },
-                      child: Text('Çalışmayı Bitir'),
+                      child: const Text('Çalışmayı Bitir'),
                     ),
                     TextButton(
                       onPressed: () {
@@ -299,7 +298,7 @@ class _YesilSayState extends State<YesilSay> {
                         _startTimer();
                         _startMovement();
                       },
-                      child: Text('Devam Et'),
+                      child: const Text('Devam Et'),
                     ),
                   ],
                 ),
@@ -316,15 +315,15 @@ class _YesilSayState extends State<YesilSay> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Çalışma Bitti'),
+          title: const Text('Çalışma Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Kaç tane yeşil renk gördünüz?'),
+              const Text('Kaç tane yeşil renk gördünüz?'),
               TextField(
                 controller: _textEditingController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: 'Rakam giriniz'),
+                decoration: const InputDecoration(hintText: 'Rakam giriniz'),
               ),
             ],
           ),
@@ -338,7 +337,7 @@ class _YesilSayState extends State<YesilSay> {
                   _showResultDialog(context, false);
                 }
               },
-              child: Text('Gönder'),
+              child: const Text('Gönder'),
             ),
           ],
         );
@@ -361,7 +360,7 @@ class _YesilSayState extends State<YesilSay> {
                   : 'Yanlış sayıda yeşil renk gördünüz.'),
               if (!isCorrect)
                 Text('Doğru Sayı: $_totalGreenCount',
-                    style: TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Colors.white)),
             ],
           ),
           actions: [
@@ -369,20 +368,20 @@ class _YesilSayState extends State<YesilSay> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Gozegzersizleri()),
+                  MaterialPageRoute(builder: (context) => const Gozegzersizleri()),
                 );
               },
-              child: Text('Çık'),
+              child: const Text('Çık'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => YesilSay()),
+                  MaterialPageRoute(builder: (context) => const YesilSay()),
                 );
                 _restartWork();
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
           ],
         );
@@ -456,7 +455,7 @@ class GridPainter extends CustomPainter {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: YesilSay(),
   ));

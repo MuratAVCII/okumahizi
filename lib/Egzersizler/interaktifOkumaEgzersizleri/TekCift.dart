@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:math';
 
 class TekleriCiftleriBul extends StatefulWidget {
+  const TekleriCiftleriBul({super.key});
+
   @override
   _TekleriCiftleriBulState createState() => _TekleriCiftleriBulState();
 }
@@ -46,16 +48,16 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Container(
-                constraints: BoxConstraints(maxWidth: 400),
-                padding: EdgeInsets.all(16.0),
+                constraints: const BoxConstraints(maxWidth: 400),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    const Text(
                       'Çalışma Sürenizi Seçin',
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                         'Çalışma Süreniz : ${(_workDuration).toStringAsFixed(1)} Dakika'),
                     Slider(
@@ -78,14 +80,14 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                             Navigator.pop(context);
                             Navigator.pop(context);
                           },
-                          child: Text('Geri Dön'),
+                          child: const Text('Geri Dön'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                             _startGame();
                           },
-                          child: Text('Oyuna Başla'),
+                          child: const Text('Oyuna Başla'),
                         ),
                       ],
                     ),
@@ -117,7 +119,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
   // Function to start the timer
   void _startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!_paused && _remainingSeconds! > 0) {
         setState(() {
           _remainingSeconds = _remainingSeconds! - 1;
@@ -193,7 +195,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Bitti'),
+          title: const Text('Oyun Bitti'),
           content: Text(
               'Çalışma süreniz bitti. Doğru cevap sayınız: $_correctAnswers'),
           actions: [
@@ -202,17 +204,17 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                 Navigator.pop(context);
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => TekleriCiftleriBul()),
+                  MaterialPageRoute(builder: (context) => const TekleriCiftleriBul()),
                 );
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: Text('Çık'),
+              child: const Text('Çık'),
             ),
           ],
         );
@@ -226,8 +228,8 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Durdu'),
-          content: Text(
+          title: const Text('Oyun Durdu'),
+          content: const Text(
               'Oyunu durdurdunuz. Çıkmak mı yoksa devam etmek mi istiyorsunuz?'),
           actions: [
             TextButton(
@@ -238,7 +240,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                 });
                 _startTimer();
               },
-              child: Text('Devam Et'),
+              child: const Text('Devam Et'),
             ),
             TextButton(
               onPressed: () {
@@ -248,7 +250,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                 });
                 _showGameOverDialog();
               },
-              child: Text('Çık'),
+              child: const Text('Çık'),
             ),
           ],
         );
@@ -280,7 +282,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -293,7 +295,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
               height: containerHeight,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: _gameStarted
@@ -303,19 +305,19 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                         Text(
                           _formatDuration(
                               Duration(seconds: _remainingSeconds ?? 0)),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           _isEvenRound
                               ? 'Çift Sayıları Bul'
                               : 'Tek Sayıları Bul',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Doğru Cevap Sayısı: $_correctAnswers',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Container(
@@ -334,20 +336,13 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                             itemBuilder: (context, index) {
                               int row = index ~/ _gridSize;
                               int col = index % _gridSize;
-                              return Container(
+                              return SizedBox(
                                 width: buttonWidth,
                                 height: buttonHeight,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(12.0),
                                   child: ElevatedButton(
                                     onPressed: () => _checkAnswer(row, col),
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Text(
-                                        '${_numbers?[row][col] ?? ''}',
-                                        style: TextStyle(fontSize: fontSize),
-                                      ),
-                                    ),
                                     style: ElevatedButton.styleFrom(
                                       foregroundColor: Colors.white,
                                       backgroundColor: _selected?[row][col] ??
@@ -358,6 +353,13 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(
                                             12.0), // Oval kenar için
+                                      ),
+                                    ),
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        '${_numbers?[row][col] ?? ''}',
+                                        style: TextStyle(fontSize: fontSize),
                                       ),
                                     ),
                                   ),
@@ -374,7 +376,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
                             });
                             _showPauseDialog(context);
                           },
-                          child: Text('Durdur'),
+                          child: const Text('Durdur'),
                         ),
                       ],
                     )
@@ -388,7 +390,7 @@ class _TekleriCiftleriBulState extends State<TekleriCiftleriBul> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: TekleriCiftleriBul(),
   ));

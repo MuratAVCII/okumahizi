@@ -10,7 +10,7 @@ Widget okumaMetni(
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,7 +18,7 @@ Widget okumaMetni(
             Expanded(
               child: SingleChildScrollView(
                 child: Text(
-                  selectedMetin!.content,
+                  selectedMetin.content,
                   style: TextStyle(
                     fontSize: screenHeight / 35,
                     color: Colors.white,
@@ -28,7 +28,7 @@ Widget okumaMetni(
             ),
             ElevatedButton(
               onPressed: finishReading,
-              child: Text("Okumayı Bitir"),
+              child: const Text("Okumayı Bitir"),
             ),
           ],
         ),

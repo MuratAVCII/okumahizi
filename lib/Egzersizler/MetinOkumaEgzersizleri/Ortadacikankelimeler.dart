@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class OrtadaCikanKelime extends StatefulWidget {
-  const OrtadaCikanKelime({Key? key}) : super(key: key);
+  const OrtadaCikanKelime({super.key});
 
   @override
   _OrtadaCikanKelimeState createState() => _OrtadaCikanKelimeState();
@@ -48,7 +48,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -61,7 +61,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
               height: containerHeight,
               padding: EdgeInsets.all(screenWidth / 30),
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Column(
@@ -89,7 +89,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                         });
                         _showPauseDialog(context);
                       },
-                      child: Text('Durdur'),
+                      child: const Text('Durdur'),
                     ),
                   ],
                 ],
@@ -118,12 +118,12 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Bu oyunda, ortada çıkan kelimeleri belirli bir hızda okuyacaksınız.',
                     textAlign: TextAlign.center,
@@ -134,9 +134,9 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         DropdownButton<String>(
-                          hint: Text("Bir metin seçin"),
+                          hint: const Text("Bir metin seçin"),
                           value: _selectedTextEntry,
                           items: _textEntries.map((String value) {
                             return DropdownMenuItem<String>(
@@ -150,7 +150,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Kelime Sayısı: $_wordCount'),
                         Slider(
                           value: _wordCount.toDouble(),
@@ -164,7 +164,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -172,14 +172,14 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Punto: ${_fontSize.toInt()}'),
                         Slider(
                           value: _fontSize,
@@ -206,16 +206,16 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    MetinOkumaEgzersizleri()));
+                                    const MetinOkumaEgzersizleri()));
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -260,22 +260,22 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Durdu'),
-          content: Text('Çalışmayı bitir veya devam et?'),
+          title: const Text('Oyun Durdu'),
+          content: const Text('Çalışmayı bitir veya devam et?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _showCompletionDialog();
               },
-              child: Text('Çalışmayı Bitir'),
+              child: const Text('Çalışmayı Bitir'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _resumeWork();
               },
-              child: Text('Devam Et'),
+              child: const Text('Devam Et'),
             ),
           ],
         );
@@ -301,14 +301,14 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Çalışma Bitti'),
+          title: const Text('Çalışma Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                   'Toplam Okuma Süresi: ${_totalDuration!.inMinutes.toString().padLeft(2, '0')}:${(_totalDuration!.inSeconds % 60).toString().padLeft(2, '0')} Dakika'),
               Text('Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
-              Text('Açılan Kelime Sayısı: ${_currentWordIndex}')
+              Text('Açılan Kelime Sayısı: $_currentWordIndex')
             ],
           ),
           actions: [
@@ -317,19 +317,19 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MetinOkumaEgzersizleri()));
+                        builder: (context) => const MetinOkumaEgzersizleri()));
                 setState(() {
                   _isWorking = false;
                 });
               },
-              child: Text('Geri Dön'),
+              child: const Text('Geri Dön'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _restartWork();
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
           ],
         );

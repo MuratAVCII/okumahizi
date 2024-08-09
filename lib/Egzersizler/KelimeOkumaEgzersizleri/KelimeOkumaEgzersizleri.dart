@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class KelimeOkumaEgzersizleri extends StatelessWidget {
-  const KelimeOkumaEgzersizleri({Key? key}) : super(key: key);
+  const KelimeOkumaEgzersizleri({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
     final minButtonWidth = screenWidth / 8;
     final minButtonHeight = screenHeight / 16;
 
@@ -33,28 +33,28 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
         "text": ["ORTADA ÇIKAN BAĞIMSIZ KELİMELERİ OKU", "[2 KELİME]"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Ortadaikikelime()));
+              MaterialPageRoute(builder: (context) => const Ortadaikikelime()));
         }
       },
       {
         "text": ["ORTADA ÇIKAN BAĞIMSIZ KELİMELERİ OKU", "[3 KELİME]"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Ortadauckelime()));
+              MaterialPageRoute(builder: (context) => const Ortadauckelime()));
         }
       },
       {
         "text": ["RASTGELE YERDE ÇIKAN BAĞIMSIZ KELİMELERİ OKU", "[2 KELİME]"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Rastgeleikikelime()));
+              MaterialPageRoute(builder: (context) => const Rastgeleikikelime()));
         }
       },
       {
         "text": ["RASTGELE YERDE ÇIKAN BAĞIMSIZ KELİMELERİ OKU", "[3 KELİME]"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Rastgeleuckelime()));
+              MaterialPageRoute(builder: (context) => const Rastgeleuckelime()));
         }
       },
 
@@ -65,7 +65,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -83,7 +83,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height / 10,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,7 +107,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  AnaSayfa(title: "title")));
+                                                  const AnaSayfa(title: "title")));
                                     },
                                     child: Text("Anasayfa",
                                         style: TextStyle(
@@ -149,9 +149,9 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: screenWidth * 0.01),
                             child: DropdownButton<String>(
-                              icon: Icon(Icons.arrow_drop_down),
+                              icon: const Icon(Icons.arrow_drop_down),
                               iconEnabledColor: Colors.white,
-                              underline: SizedBox(),
+                              underline: const SizedBox(),
                               items: <String>['Giriş yap', 'Kayıt ol']
                                   .map((String value) {
                                 return DropdownMenuItem<String>(
@@ -199,7 +199,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         IconButton(
-                                          icon: Icon(Icons.arrow_back),
+                                          icon: const Icon(Icons.arrow_back),
                                           iconSize: screenWidth * 0.05,
                                           disabledColor: Colors.white,
                                           color: Colors.white,
@@ -208,7 +208,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Egzersizler()),
+                                                      const Egzersizler()),
                                             );
                                           },
                                         ),
@@ -239,7 +239,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                                       crossAxisSpacing: screenWidth / 40,
                                       mainAxisSpacing: screenHeight / 40,
                                       shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       children: List.generate(buttonList.length,
                                           (index) {
                                         return MouseRegion(
@@ -271,7 +271,7 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
                                                 (Set<MaterialState> states) {
                                                   if (states.contains(
                                                       MaterialState.hovered)) {
-                                                    return BorderSide(
+                                                    return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2,
                                                     );
@@ -343,13 +343,15 @@ class KelimeOkumaEgzersizleri extends StatelessWidget {
 }
 
 class Page1 extends StatelessWidget {
+  const Page1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 1'),
+        title: const Text('Page 1'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 1 Content'),
       ),
     );
@@ -357,13 +359,15 @@ class Page1 extends StatelessWidget {
 }
 
 class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 2'),
+        title: const Text('Page 2'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 2 Content'),
       ),
     );
@@ -371,13 +375,15 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 3'),
+        title: const Text('Page 3'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 3 Content'),
       ),
     );

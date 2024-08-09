@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class TwoPointHorizontal extends StatefulWidget {
-  const TwoPointHorizontal({Key? key}) : super(key: key);
+  const TwoPointHorizontal({super.key});
 
   @override
   _TwoPointHorizontalState createState() => _TwoPointHorizontalState();
@@ -32,13 +32,13 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
     final screenHeight = MediaQuery.of(context).size.height;
-    Color pageColor = Color(0xFFD5B59C);
+    Color pageColor = const Color(0xFFD5B59C);
 
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -71,12 +71,12 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                                 Text(
                                   _formatDuration(
                                       Duration(seconds: _remainingSeconds)),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Spacer(),
-                                Container(
+                                const Spacer(),
+                                SizedBox(
                                   width: screenWidth * 0.75,
                                   height: 50,
                                   child: Stack(
@@ -97,7 +97,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                                           child: Container(
                                             width: screenHeight / 30,
                                             height: screenHeight / 30,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Colors.red,
                                               shape: BoxShape.circle,
                                             ),
@@ -108,7 +108,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                                   ),
                                 ),
                               ],
-                              Spacer(),
+                              const Spacer(),
                               if (_isWorking) ...[
                                 ElevatedButton(
                                   onPressed: () {
@@ -117,7 +117,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                                     });
                                     _showPauseDialog(context);
                                   },
-                                  child: Text('Durdur'),
+                                  child: const Text('Durdur'),
                                 ),
                               ],
                             ],
@@ -144,12 +144,12 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400), // Max genişlik sınırı
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400), // Max genişlik sınırı
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'İki nokta takip çalışmasında, başınızı sabit tutup gözlerinizle kırmızı noktaları takip etmeniz gerekmektedir.',
                     textAlign: TextAlign.center,
@@ -167,7 +167,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Süreniz : ${formatDuration(_workDuration)} Dakika'),
                         Slider(
@@ -182,7 +182,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız : ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -190,7 +190,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
@@ -210,14 +210,14 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                         Navigator.pop(
                             context); // Navigate back to the previous page
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -242,7 +242,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
 
   void _startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!_paused && _remainingSeconds > 0) {
         setState(() {
           _remainingSeconds--;
@@ -284,16 +284,16 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400), // Max genişlik sınırı
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400), // Max genişlik sınırı
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Oyun Durdu',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -307,7 +307,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                         });
                         _showGameOverDialog(context);
                       },
-                      child: Text('Çalışmayı Bitir'),
+                      child: const Text('Çalışmayı Bitir'),
                     ),
                     TextButton(
                       onPressed: () {
@@ -318,7 +318,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                         _startTimer();
                         _startRotation();
                       },
-                      child: Text('Devam Et'),
+                      child: const Text('Devam Et'),
                     ),
                   ],
                 ),
@@ -342,22 +342,22 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400), // Max genişlik sınırı
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400), // Max genişlik sınırı
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Oyun Bitti',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text('Geçen Süre: $elapsedTime'),
                 Text('Çalışma Hızı: ${_workSpeed.toStringAsFixed(1)}x'),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -368,19 +368,19 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    Gozegzersizleri())); // Go back to the previous page
+                                    const Gozegzersizleri())); // Go back to the previous page
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TwoPointHorizontal()),
+                              builder: (context) => const TwoPointHorizontal()),
                         ); // Restart the game
                       },
-                      child: Text('Tekrar Oyna'),
+                      child: const Text('Tekrar Oyna'),
                     ),
                   ],
                 ),
@@ -408,7 +408,7 @@ class _TwoPointHorizontalState extends State<TwoPointHorizontal> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: TwoPointHorizontal(),
   ));
 }

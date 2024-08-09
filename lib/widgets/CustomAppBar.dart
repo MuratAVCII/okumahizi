@@ -2,7 +2,6 @@ import 'package:Hizlanio/widgets/full_screen_button.dart';
 import 'package:flutter/material.dart';
 import 'package:Hizlanio/iletisim.dart';
 import 'package:Hizlanio/girisyap.dart';
-import 'package:Hizlanio/Kayitol.dart';
 
 class CustomAppBar extends StatelessWidget {
   final double sidePadding;
@@ -10,16 +9,16 @@ class CustomAppBar extends StatelessWidget {
   final double rowHeight;
 
   const CustomAppBar({
-    Key? key,
+    super.key,
     required this.sidePadding,
     required this.screenWidth,
     required this.rowHeight,
     required List<FullScreenButton> actions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final maxWidth = 1200.0;
+    const maxWidth = 1200.0;
     final appBarWidth =
         screenWidth > maxWidth ? maxWidth : screenWidth - 2 * sidePadding;
 
@@ -67,7 +66,7 @@ class CustomAppBar extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Iletisim()));
+                                  builder: (context) => const Iletisim()));
                         },
                         child: Text("İletişim",
                             style: TextStyle(
@@ -89,7 +88,7 @@ class CustomAppBar extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Girisyap()),
+                            MaterialPageRoute(builder: (context) => const Girisyap()),
                           );
                         },
                         child: Text("Giriş Yap",
@@ -103,7 +102,7 @@ class CustomAppBar extends StatelessWidget {
                 )
               else
                 IconButton(
-                  icon: Icon(Icons.menu, color: Colors.white),
+                  icon: const Icon(Icons.menu, color: Colors.white),
                   onPressed: () {
                     Scaffold.of(context).openEndDrawer();
                   },

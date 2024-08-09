@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 void main() {
-  runApp(MaterialApp(home: BoyananKelimeler()));
+  runApp(const MaterialApp(home: BoyananKelimeler()));
 }
 
 class BoyananKelimeler extends StatefulWidget {
+  const BoyananKelimeler({super.key});
+
   @override
   _BoyananKelimelerState createState() => _BoyananKelimelerState();
 }
@@ -17,13 +19,13 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
   int _speedMultiplier = 1;
   double _fontSize = 16;
 
-  List<String> _texts = [
+  final List<String> _texts = [
     'Örnek Metin 1',
     'Örnek Metin 2',
     'Örnek Metin 3',
     'Gümüş Nehir'
   ];
-  Map<String, String> _textContents = {
+  final Map<String, String> _textContents = {
     'Gümüş Nehir':
         "Ali Bey, köylülerin fikrini almak için bir toplantı düzenledi. Toplantıda herkes düşüncelerini dile getirdi. Bazıları, madencilerin teklif ettiği paranın köyü daha da geliştirebileceğini savunurken, diğerleri nehrin bozulabileceği endişesiyle bu fikre karşı çıktı. Tartışmalar uzun sürdü ve sonunda karar vermek zorlaştı. Dede Kerim, toplantının sonunda söz aldı ve herkesin dikkatini çekti. Bu nehir, bizim atalarımızdan miras kalan en değerli hazinemizdir, dedi. Onu korumak, bizim görevimizdir. Altın geçicidir, fakat nehrimiz ebedidir. Dede Kerim'in bu sözleri köylüler üzerinde derin bir etki bıraktı ve nihayetinde madencilerin teklifini reddetmeye karar verdiler. Madenciler, köylülerin kararına saygı duyarak köyden ayrıldılar. Ancak, onların gidişiyle birlikte köydeki huzur bozulmamıştı. Aksine, köylüler nehirlerini korudukları için gurur duyuyorlardı. Bu olay, köy halkını birbirine daha da kenetledi ve köydeki birlik ve beraberlik duygusunu güçlendirdi. Günler geçtikçe, köylüler hayatlarına kaldıkları yerden devam ettiler. Her akşam, Dede Kerim'in etrafında toplanan çocuklar, onun anlattığı yeni hikayelerle büyülendiler. Dede Kerim, bu olaydan dersler çıkartarak çocuklara nehrin ve doğanın değerini anlattı. Çocuklar, nehrin sadece bir su kaynağı olmadığını, aynı zamanda köylerinin ruhu olduğunu öğrendiler. Bir yaz sabahı, köyde olağanüstü bir olay meydana geldi. Nehirdeki suyun rengi aniden değişti ve parlak bir maviye dönüştü. Bu durum, köylüler arasında büyük bir merak uyandırdı. Nehrin bu değişimi, köyde uzun süredir görülmeyen bir balık türünün geri dönmesine neden oldu. Balıklar, nehrin temizliğini ve doğallığını yeniden kazanmasından dolayı geri dönmüşlerdi. Bu, köylüler için bir mucize olarak kabul edildi ve nehrin kutsallığına olan inançlarını daha da pekiştirdi.",
     'Örnek Metin 1': 'Bu örnek metin birinci metindir. ' * 100,
@@ -45,7 +47,7 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -69,13 +71,13 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
               return Dialog(
                 child: Container(
                   width: 400,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
+                      const Text(
                           'Bu oyunda, vurgulanan kelimeleri belirli bir hızda okuyacaksınız.'),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       DropdownButton<String>(
                         value: _selectedText,
                         onChanged: (String? newValue) {
@@ -91,7 +93,7 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
                           );
                         }).toList(),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Text('Kelime Sayısı: $_wordCount'),
                       Slider(
                         value: _wordCount.toDouble(),
@@ -105,7 +107,7 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Text('Çalışma Hızınız: ${_speedMultiplier.toString()}x'),
                       Slider(
                         value: _speedMultiplier.toDouble(),
@@ -119,7 +121,7 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Text('Punto: ${_fontSize.toInt()}'),
                       Slider(
                         value: _fontSize,
@@ -141,15 +143,15 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        MetinOkumaEgzersizleri())),
-                            child: Text('Geri Dön'),
+                                        const MetinOkumaEgzersizleri())),
+                            child: const Text('Geri Dön'),
                           ),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context);
                               _startWork();
                             },
-                            child: Text('Oyuna Başla'),
+                            child: const Text('Oyuna Başla'),
                           ),
                         ],
                       ),
@@ -188,7 +190,7 @@ class GamePage extends StatefulWidget {
   final double fontSize;
   final int wordCount;
 
-  GamePage({
+  const GamePage({super.key, 
     required this.text,
     required this.speedMultiplier,
     required this.fontSize,
@@ -207,7 +209,7 @@ class _GamePageState extends State<GamePage> {
   double _containerHeight = 0;
   List<String> _currentChunk = [];
   int _currentChunkStartIndex = 0;
-  bool _isPaused = false;
+  final bool _isPaused = false;
   late Timer _backgroundTimer;
   Duration _elapsedTime = Duration.zero;
 
@@ -228,9 +230,9 @@ class _GamePageState extends State<GamePage> {
   }
 
   void _startBackgroundTimer() {
-    _backgroundTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _backgroundTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        _elapsedTime += Duration(seconds: 1);
+        _elapsedTime += const Duration(seconds: 1);
       });
     });
   }
@@ -246,22 +248,22 @@ class _GamePageState extends State<GamePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Oyun Durdu'),
-          content: Text('Çalışmayı bitir veya devam et.'),
+          title: const Text('Oyun Durdu'),
+          content: const Text('Çalışmayı bitir veya devam et.'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _resumeGame();
               },
-              child: Text('Devam Et'),
+              child: const Text('Devam Et'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _showSummaryDialog();
               },
-              child: Text('Çalışmayı Bitir'),
+              child: const Text('Çalışmayı Bitir'),
             ),
           ],
         );
@@ -279,7 +281,7 @@ class _GamePageState extends State<GamePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Çalışma Tamamlandı'),
+          title: const Text('Çalışma Tamamlandı'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -297,16 +299,16 @@ class _GamePageState extends State<GamePage> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BoyananKelimeler()));
+                        builder: (context) => const BoyananKelimeler()));
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: Text('Çıkış Yap'),
+              child: const Text('Çıkış Yap'),
             ),
           ],
         );
@@ -327,7 +329,7 @@ class _GamePageState extends State<GamePage> {
     for (int i = 0; i < _currentChunk.length; i++) {
       int globalIndex = _currentChunkStartIndex + i;
       spans.add(TextSpan(
-        text: _currentChunk[i] + ' ',
+        text: '${_currentChunk[i]} ',
         style: TextStyle(
           fontSize: widget.fontSize,
           color: globalIndex < _currentWordIndex
@@ -341,7 +343,7 @@ class _GamePageState extends State<GamePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -355,7 +357,7 @@ class _GamePageState extends State<GamePage> {
               alignment: Alignment.topLeft,
               padding: EdgeInsets.all(MediaQuery.of(context).size.height / 30),
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Column(
@@ -369,7 +371,7 @@ class _GamePageState extends State<GamePage> {
                     onPressed: () {
                       _showPauseDialog();
                     },
-                    child: Text('Durdur'),
+                    child: const Text('Durdur'),
                   ),
                 ],
               ),
@@ -392,7 +394,7 @@ class _GamePageState extends State<GamePage> {
 
     for (int i = _currentChunkStartIndex; i < _words.length; i++) {
       String word = _words[i];
-      currentPageText.write(word + ' ');
+      currentPageText.write('$word ');
       textPainter.text = TextSpan(
         text: currentPageText.toString(),
         style: TextStyle(fontSize: widget.fontSize),

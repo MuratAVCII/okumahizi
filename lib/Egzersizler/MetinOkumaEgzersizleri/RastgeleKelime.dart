@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:math';
 
 class RastgeleCikanKelime extends StatefulWidget {
-  const RastgeleCikanKelime({Key? key}) : super(key: key);
+  const RastgeleCikanKelime({super.key});
 
   @override
   _RastgeleCikanKelimeState createState() => _RastgeleCikanKelimeState();
@@ -50,7 +50,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -63,7 +63,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
               height: containerHeight,
               padding: EdgeInsets.all(screenWidth / 30),
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Stack(
@@ -93,7 +93,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                           });
                           _showPauseDialog(context);
                         },
-                        child: Text('Durdur'),
+                        child: const Text('Durdur'),
                       ),
                     ),
                   ],
@@ -123,12 +123,12 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Bu oyunda, rastgele yerlerde çıkan kelimeleri belirli bir hızda okuyacaksınız.',
                     textAlign: TextAlign.center,
@@ -139,9 +139,9 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         DropdownButton<String>(
-                          hint: Text("Bir metin seçin"),
+                          hint: const Text("Bir metin seçin"),
                           value: _selectedTextEntry,
                           items: _textEntries.map((String value) {
                             return DropdownMenuItem<String>(
@@ -155,7 +155,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Kelime Sayısı: $_wordCount'),
                         Slider(
                           value: _wordCount.toDouble(),
@@ -169,7 +169,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -177,14 +177,14 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Punto: ${_fontSize.toInt()}'),
                         Slider(
                           value: _fontSize,
@@ -211,16 +211,16 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    MetinOkumaEgzersizleri()));
+                                    const MetinOkumaEgzersizleri()));
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -282,22 +282,22 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Durdu'),
-          content: Text('Çalışmayı bitir veya devam et?'),
+          title: const Text('Oyun Durdu'),
+          content: const Text('Çalışmayı bitir veya devam et?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _showCompletionDialog();
               },
-              child: Text('Çalışmayı Bitir'),
+              child: const Text('Çalışmayı Bitir'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _resumeWork();
               },
-              child: Text('Devam Et'),
+              child: const Text('Devam Et'),
             ),
           ],
         );
@@ -323,14 +323,14 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Çalışma Bitti'),
+          title: const Text('Çalışma Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                   'Toplam Okuma Süresi: ${_totalDuration!.inMinutes.toString().padLeft(2, '0')}:${(_totalDuration!.inSeconds % 60).toString().padLeft(2, '0')} Dakika'),
               Text('Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
-              Text('Açılan Kelime Sayısı: ${_currentWordIndex}')
+              Text('Açılan Kelime Sayısı: $_currentWordIndex')
             ],
           ),
           actions: [
@@ -339,19 +339,19 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MetinOkumaEgzersizleri()));
+                        builder: (context) => const MetinOkumaEgzersizleri()));
                 setState(() {
                   _isWorking = false;
                 });
               },
-              child: Text('Geri Dön'),
+              child: const Text('Geri Dön'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _restartWork();
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
           ],
         );
@@ -368,7 +368,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: RastgeleCikanKelime(),
   ));
 }

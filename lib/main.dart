@@ -3,15 +3,12 @@ import 'package:Hizlanio/girisyap.dart';
 import 'package:Hizlanio/hizTesti/hizTesti.dart';
 import 'package:Hizlanio/iletisim.dart';
 import 'package:Hizlanio/widgets/CustomAppBar.dart';
-import 'package:Hizlanio/widgets/CustomEndDrawer.dart';
+import 'package:Hizlanio/widgets/custom_end_drawer.dart';
 import 'package:Hizlanio/widgets/full_screen_button.dart'; // Import FullScreenButton
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:Hizlanio/Kayitol.dart';
-import 'dart:ui';
 import 'dart:math' as math;
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +17,7 @@ void main() async {
   } catch (e) {
     print('Firebase başlatma hatası: $e');
   }
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,9 +34,9 @@ class MyApp extends StatelessWidget {
       ),
       home: const AnaSayfa(title: 'Ana Sayfa'),
       routes: {
-        '/iletisim': (context) => Iletisim(),
-        '/girisyap': (context) => Girisyap(),
-        '/kayitol': (context) => Kayitol(),
+        '/iletisim': (context) => const Iletisim(),
+        '/girisyap': (context) => const Girisyap(),
+        '/kayitol': (context) => const Kayitol(),
       },
     );
   }
@@ -59,14 +56,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   @override
   Widget build(BuildContext context) {
-    Color buttonColor = Color.fromARGB(255, 48, 73, 174);
+    Color buttonColor = const Color.fromARGB(255, 48, 73, 174);
 
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     final rowHeight = screenHeight / 10;
     final rowSpacing = screenHeight / 200;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
 
     return Container(
       width: double.infinity,
@@ -89,7 +86,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 sidePadding: sidePadding,
                 screenWidth: screenWidth,
                 rowHeight: rowHeight,
-                actions: [],
+                actions: const [],
               ),
             ),
             endDrawer: CustomEndDrawer(rowHeight: rowHeight),
@@ -173,7 +170,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                         height:
                                                             screenHeight / 3,
                                                         decoration:
-                                                            BoxDecoration(
+                                                            const BoxDecoration(
                                                           color: Colors.green,
                                                           borderRadius:
                                                               BorderRadius
@@ -188,7 +185,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                               MainAxisAlignment
                                                                   .spaceEvenly,
                                                           children: [
-                                                            Spacer(),
+                                                            const Spacer(),
                                                             Center(
                                                               child: Container(
                                                                 width:
@@ -225,7 +222,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                                       .of(context)
                                                                   .copyWith(
                                                                 valueIndicatorTextStyle:
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                   color: Colors
                                                                       .green, // Aktif etiketin (label) yazı rengi
                                                                 ),
@@ -272,7 +269,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                                     .white,
                                                               ),
                                                             ),
-                                                            Spacer(),
+                                                            const Spacer(),
                                                             ElevatedButton(
                                                               onPressed: () {
                                                                 Navigator.pop(
@@ -282,18 +279,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                                   MaterialPageRoute(
                                                                     builder:
                                                                         (context) =>
-                                                                            HizTesti(),
+                                                                            const HizTesti(),
                                                                   ),
                                                                 );
                                                               },
-                                                              child: Text(
+                                                              child: const Text(
                                                                 "Hız ölçümüne başla",
                                                                 style: TextStyle(
                                                                     color: Colors
                                                                         .green),
                                                               ),
                                                             ),
-                                                            Spacer(),
+                                                            const Spacer(),
                                                           ],
                                                         ),
                                                       );
@@ -320,7 +317,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                 (Set<MaterialState> states) {
                                                   if (states.contains(
                                                       MaterialState.hovered)) {
-                                                    return BorderSide(
+                                                    return const BorderSide(
                                                         color: Colors.white,
                                                         width: 2);
                                                   }
@@ -341,7 +338,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                               padding: EdgeInsets.symmetric(
                                                   vertical:
                                                       screenHeight * 0.02),
-                                              child: FittedBox(
+                                              child: const FittedBox(
                                                 fit: BoxFit.scaleDown,
                                                 child: Text(
                                                   'HIZ TESTİ',
@@ -417,7 +414,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                       SizedBox(height: screenHeight / 50),
                       // Alt alan
-                      Container(
+                      SizedBox(
                         height: screenHeight / 10,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -431,7 +428,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Egzersizler()),
+                                          builder: (context) =>
+                                              const Egzersizler()),
                                     );
                                     print("Egzersizler Butonuna Basıldı");
                                   },
@@ -451,7 +449,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                       (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.hovered)) {
-                                          return BorderSide(
+                                          return const BorderSide(
                                               color: Colors.white, width: 2);
                                         }
                                         return BorderSide.none;
@@ -467,7 +465,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                   ),
                                   child: SizedBox(
                                     height: screenHeight * 0.08,
-                                    child: Center(
+                                    child: const Center(
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
@@ -512,7 +510,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                       (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.hovered)) {
-                                          return BorderSide(
+                                          return const BorderSide(
                                               color: Colors.white, width: 2);
                                         }
                                         return BorderSide.none;
@@ -528,7 +526,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                   ),
                                   child: SizedBox(
                                     height: screenHeight * 0.08,
-                                    child: Center(
+                                    child: const Center(
                                       child: FittedBox(
                                         fit: BoxFit.scaleDown,
                                         child: Text(
@@ -557,7 +555,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
             ),
           ),
           // FullScreenButton widget'ını sağ üst köşeye sabitle
-          Positioned(
+          const Positioned(
             top: 100,
             right: 0,
             child: FullScreenButton(),

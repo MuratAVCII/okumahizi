@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 class SixPoint extends StatefulWidget {
-  const SixPoint({Key? key}) : super(key: key);
+  const SixPoint({super.key});
 
   @override
   _SixPointState createState() => _SixPointState();
@@ -33,14 +33,14 @@ class _SixPointState extends State<SixPoint> {
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
     final screenHeight = MediaQuery.of(context).size.height;
-    Color pageColor = Color(0xFFD5B59C);
+    Color pageColor = const Color(0xFFD5B59C);
 
     return Scaffold(
       body: SafeArea(
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("images/Arka Plan.png"),
               fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class _SixPointState extends State<SixPoint> {
                                   Text(
                                     _formatDuration(
                                         Duration(seconds: _remainingSeconds)),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -92,7 +92,7 @@ class _SixPointState extends State<SixPoint> {
                                       });
                                       _showPauseDialog(context);
                                     },
-                                    child: Text('Durdur'),
+                                    child: const Text('Durdur'),
                                   ),
                                 ],
                               ],
@@ -120,12 +120,12 @@ class _SixPointState extends State<SixPoint> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'İki nokta takip çalışmasında, başınızı sabit tutup gözlerinizle kırmızı noktaları takip etmeniz gerekmektedir.',
                     textAlign: TextAlign.center,
@@ -143,7 +143,7 @@ class _SixPointState extends State<SixPoint> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Süreniz : ${formatDuration(_workDuration)} Dakika'),
                         Slider(
@@ -158,7 +158,7 @@ class _SixPointState extends State<SixPoint> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız : ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -166,7 +166,7 @@ class _SixPointState extends State<SixPoint> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
@@ -185,14 +185,14 @@ class _SixPointState extends State<SixPoint> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -217,7 +217,7 @@ class _SixPointState extends State<SixPoint> {
 
   void _startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!_paused && _remainingSeconds > 0) {
         setState(() {
           _remainingSeconds--;
@@ -282,16 +282,16 @@ class _SixPointState extends State<SixPoint> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Oyun Durdu',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -305,7 +305,7 @@ class _SixPointState extends State<SixPoint> {
                         });
                         _showGameOverDialog(context);
                       },
-                      child: Text('Çalışmayı Bitir'),
+                      child: const Text('Çalışmayı Bitir'),
                     ),
                     TextButton(
                       onPressed: () {
@@ -316,7 +316,7 @@ class _SixPointState extends State<SixPoint> {
                         _startTimer();
                         _startRotation();
                       },
-                      child: Text('Devam Et'),
+                      child: const Text('Devam Et'),
                     ),
                   ],
                 ),
@@ -340,22 +340,22 @@ class _SixPointState extends State<SixPoint> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400), // Max genişlik sınırı
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400), // Max genişlik sınırı
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Oyun Bitti',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text('Geçen Süre: $elapsedTime'),
                 Text('Çalışma Hızı: ${_workSpeed.toStringAsFixed(1)}x'),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -364,19 +364,19 @@ class _SixPointState extends State<SixPoint> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Gozegzersizleri()),
+                              builder: (context) => const Gozegzersizleri()),
                         ); // Go back to the previous page
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SixPoint()),
+                          MaterialPageRoute(builder: (context) => const SixPoint()),
                         ); // Restart the game
                       },
-                      child: Text('Tekrar Oyna'),
+                      child: const Text('Tekrar Oyna'),
                     ),
                   ],
                 ),
@@ -452,7 +452,7 @@ class HexagonPainter extends CustomPainter {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: SixPoint(),
   ));
 }

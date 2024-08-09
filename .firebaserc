@@ -1,7 +1,6 @@
 {
   "projects": {
-    "default": "okumahizi-5ed4a",
-    "firebase init hosting": "okumahizi-5ed4a"
+    "default": "okumahizi-5ed4a"
   },
   "targets": {},
   "etags": {},

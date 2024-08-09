@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
 class FullScreenButton extends StatefulWidget {
-  const FullScreenButton({Key? key}) : super(key: key);
+  const FullScreenButton({super.key});
 
   @override
   _FullScreenButtonState createState() => _FullScreenButtonState();
@@ -31,14 +31,14 @@ class _FullScreenButtonState extends State<FullScreenButton> {
       onPressed: toggleFullScreen,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.black38,
-        shape: RoundedRectangleBorder(
-          borderRadius: const BorderRadius.only(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             bottomLeft: Radius.circular(16),
           ),
         ),
         padding:
-            EdgeInsets.symmetric(vertical: 20), // Butonun yüksekliğini artırır
+            const EdgeInsets.symmetric(vertical: 20), // Butonun yüksekliğini artırır
       ),
       child: Row(
         children: [
@@ -46,11 +46,11 @@ class _FullScreenButtonState extends State<FullScreenButton> {
             isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
             color: Colors.white, // İkonun rengi
           ),
-          if (showText) SizedBox(width: 8),
+          if (showText) const SizedBox(width: 8),
           if (showText)
             Text(
               isFullScreen ? '' : 'Tam Ekran Yap',
-              style: TextStyle(fontSize: 16, color: Colors.white),
+              style: const TextStyle(fontSize: 16, color: Colors.white),
             ),
         ],
       ),

@@ -23,14 +23,14 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class Gozegzersizleri extends StatelessWidget {
-  const Gozegzersizleri({Key? key}) : super(key: key);
+  const Gozegzersizleri({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
     final minButtonWidth = screenWidth / 8;
     final minButtonHeight = screenHeight / 16;
 
@@ -48,133 +48,133 @@ class Gozegzersizleri extends StatelessWidget {
         "text": ["Nesne Takip", "[Düzenli]"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => NesneTakip()));
+              context, MaterialPageRoute(builder: (context) => const NesneTakip()));
         }
       },
       {
         "text": ["Nesne Takip", "[Rastgele]]"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => NesneTakipRandom()));
+              MaterialPageRoute(builder: (context) => const NesneTakipRandom()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "(ÇİZGİ YATAY)"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TwoPointHorizontal()));
+              MaterialPageRoute(builder: (context) => const TwoPointHorizontal()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "(ÇİZGİ DİKEY)"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TwoPointVertical()));
+              MaterialPageRoute(builder: (context) => const TwoPointVertical()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "ÜÇGEN"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ThreePoint()));
+              context, MaterialPageRoute(builder: (context) => const ThreePoint()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "KARE"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => FourPoint()));
+              context, MaterialPageRoute(builder: (context) => const FourPoint()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "DÜZGÜN BEŞGEN"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => FivePoint()));
+              context, MaterialPageRoute(builder: (context) => const FivePoint()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "DÜZGÜN ALTIGEN"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SixPoint()));
+              context, MaterialPageRoute(builder: (context) => const SixPoint()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "DÜZGÜN YEDİGEN"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SevenPoint()));
+              context, MaterialPageRoute(builder: (context) => const SevenPoint()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "DÜZGÜN SEKİZGEN"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => EightPoint()));
+              context, MaterialPageRoute(builder: (context) => const EightPoint()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "pentegram"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => FiveStar()));
+              context, MaterialPageRoute(builder: (context) => const FiveStar()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "HexaGram"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HexaGram()));
+              context, MaterialPageRoute(builder: (context) => const HexaGram()));
         }
       },
       {
         "text": ["NOKTAYI TAKİP ET", "HeptaGram"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HeptaGram()));
+              context, MaterialPageRoute(builder: (context) => const HeptaGram()));
         }
       },
       {
         "text": ["BÜYÜYEN ŞEKİLLER", "ÜÇGEN"],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Buyuyenucgen()));
+              context, MaterialPageRoute(builder: (context) => const Buyuyenucgen()));
         }
       },
       {
         "text": ["BÜYÜYEN ŞEKİLLER", "DÖRTGEN"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Buyuyendortgen()));
+              MaterialPageRoute(builder: (context) => const Buyuyendortgen()));
         }
       },
       {
         "text": ["BÜYÜYEN ŞEKİLLER", "BEŞGEN"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Buyuyenbesgen()));
+              MaterialPageRoute(builder: (context) => const Buyuyenbesgen()));
         }
       },
       {
         "text": ["BÜYÜYEN ŞEKİLLER", "ALTIGEN"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Buyuyenaltigen()));
+              MaterialPageRoute(builder: (context) => const Buyuyenaltigen()));
         }
       },
       {
         "text": ["BÜYÜYEN ŞEKİLLER", "YEDİGEN"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Buyuyenyedigen()));
+              MaterialPageRoute(builder: (context) => const Buyuyenyedigen()));
         }
       },
       {
         "text": ["BÜYÜYEN ŞEKİLLER", "SEKİZGEN"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Buyuyensekizgen()));
+              MaterialPageRoute(builder: (context) => const Buyuyensekizgen()));
         }
       },
       // Diğer butonlar için benzer yapı devam eder...
@@ -184,7 +184,7 @@ class Gozegzersizleri extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -202,7 +202,7 @@ class Gozegzersizleri extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height / 10,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,7 +226,7 @@ class Gozegzersizleri extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  AnaSayfa(title: "title")));
+                                                  const AnaSayfa(title: "title")));
                                     },
                                     child: Text("Anasayfa",
                                         style: TextStyle(
@@ -268,9 +268,9 @@ class Gozegzersizleri extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: screenWidth * 0.01),
                             child: DropdownButton<String>(
-                              icon: Icon(Icons.arrow_drop_down),
+                              icon: const Icon(Icons.arrow_drop_down),
                               iconEnabledColor: Colors.white,
-                              underline: SizedBox(),
+                              underline: const SizedBox(),
                               items: <String>['Giriş yap', 'Kayıt ol']
                                   .map((String value) {
                                 return DropdownMenuItem<String>(
@@ -318,7 +318,7 @@ class Gozegzersizleri extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         IconButton(
-                                          icon: Icon(Icons.arrow_back),
+                                          icon: const Icon(Icons.arrow_back),
                                           iconSize: screenWidth * 0.05,
                                           disabledColor: Colors.white,
                                           color: Colors.white,
@@ -327,7 +327,7 @@ class Gozegzersizleri extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Egzersizler()),
+                                                      const Egzersizler()),
                                             );
                                           },
                                         ),
@@ -358,7 +358,7 @@ class Gozegzersizleri extends StatelessWidget {
                                       crossAxisSpacing: screenWidth / 40,
                                       mainAxisSpacing: screenHeight / 40,
                                       shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       children: List.generate(buttonList.length,
                                           (index) {
                                         return MouseRegion(
@@ -390,7 +390,7 @@ class Gozegzersizleri extends StatelessWidget {
                                                 (Set<MaterialState> states) {
                                                   if (states.contains(
                                                       MaterialState.hovered)) {
-                                                    return BorderSide(
+                                                    return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2,
                                                     );
@@ -460,13 +460,15 @@ class Gozegzersizleri extends StatelessWidget {
 }
 
 class Page1 extends StatelessWidget {
+  const Page1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 1'),
+        title: const Text('Page 1'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 1 Content'),
       ),
     );
@@ -474,13 +476,15 @@ class Page1 extends StatelessWidget {
 }
 
 class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 2'),
+        title: const Text('Page 2'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 2 Content'),
       ),
     );
@@ -488,13 +492,15 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 3'),
+        title: const Text('Page 3'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 3 Content'),
       ),
     );

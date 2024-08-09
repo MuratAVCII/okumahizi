@@ -1,8 +1,4 @@
 import 'package:Hizlanio/Egzersizler.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Ortadauckelime.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Ortadaikikelime.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Rastgeleikikelime.dart';
-import 'package:Hizlanio/Egzersizler/KelimeOkumaEgzersizleri/Rastgeleuckelime.dart';
 import 'package:Hizlanio/Egzersizler/interaktifOkumaEgzersizleri/TakistoskopHarf.dart';
 import 'package:Hizlanio/Egzersizler/interaktifOkumaEgzersizleri/TakistoskopKelime.dart';
 import 'package:Hizlanio/Egzersizler/interaktifOkumaEgzersizleri/TakistoskopRakam.dart';
@@ -13,17 +9,17 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class interaktifOkumaEgzersizleri extends StatelessWidget {
-  const interaktifOkumaEgzersizleri({Key? key}) : super(key: key);
+  const interaktifOkumaEgzersizleri({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
     final minButtonWidth = screenWidth / 8;
     final minButtonHeight = screenHeight / 16;
-    Color.fromARGB(255, 48, 73, 174);
+    const Color.fromARGB(255, 48, 73, 174);
 
     int crossAxisCount = screenWidth < 700
         ? 2
@@ -39,35 +35,35 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
         "text": ["YEŞİL SİMGELERİ SAY", ""],
         "onPressed": () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => YesilSay()));
+              context, MaterialPageRoute(builder: (context) => const YesilSay()));
         }
       },
       {
         "text": ["Takistoskop", "RAKAM"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TakistoskopSayi()));
+              MaterialPageRoute(builder: (context) => const TakistoskopSayi()));
         }
       },
       {
         "text": ["Takistoskop", "HARF"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TakistoskopHarf()));
+              MaterialPageRoute(builder: (context) => const TakistoskopHarf()));
         }
       },
       {
         "text": ["Takistoskop", "KELİME"],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TakistoskopKelime()));
+              MaterialPageRoute(builder: (context) => const TakistoskopKelime()));
         }
       },
       {
         "text": ["Tek Çiftleri Bul", ""],
         "onPressed": () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => TekleriCiftleriBul()));
+              MaterialPageRoute(builder: (context) => const TekleriCiftleriBul()));
         }
       },
 
@@ -78,7 +74,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -96,7 +92,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height / 10,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,7 +116,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  AnaSayfa(title: "title")));
+                                                  const AnaSayfa(title: "title")));
                                     },
                                     child: Text("Anasayfa",
                                         style: TextStyle(
@@ -162,9 +158,9 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: screenWidth * 0.01),
                             child: DropdownButton<String>(
-                              icon: Icon(Icons.arrow_drop_down),
+                              icon: const Icon(Icons.arrow_drop_down),
                               iconEnabledColor: Colors.white,
-                              underline: SizedBox(),
+                              underline: const SizedBox(),
                               items: <String>['Giriş yap', 'Kayıt ol']
                                   .map((String value) {
                                 return DropdownMenuItem<String>(
@@ -212,7 +208,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         IconButton(
-                                          icon: Icon(Icons.arrow_back),
+                                          icon: const Icon(Icons.arrow_back),
                                           iconSize: screenWidth * 0.05,
                                           disabledColor: Colors.white,
                                           color: Colors.white,
@@ -221,7 +217,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Egzersizler()),
+                                                      const Egzersizler()),
                                             );
                                           },
                                         ),
@@ -252,7 +248,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                                       crossAxisSpacing: screenWidth / 40,
                                       mainAxisSpacing: screenHeight / 40,
                                       shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       children: List.generate(buttonList.length,
                                           (index) {
                                         return MouseRegion(
@@ -284,7 +280,7 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
                                                 (Set<MaterialState> states) {
                                                   if (states.contains(
                                                       MaterialState.hovered)) {
-                                                    return BorderSide(
+                                                    return const BorderSide(
                                                       color: Colors.white,
                                                       width: 2,
                                                     );
@@ -356,13 +352,15 @@ class interaktifOkumaEgzersizleri extends StatelessWidget {
 }
 
 class Page1 extends StatelessWidget {
+  const Page1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 1'),
+        title: const Text('Page 1'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 1 Content'),
       ),
     );
@@ -370,13 +368,15 @@ class Page1 extends StatelessWidget {
 }
 
 class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 2'),
+        title: const Text('Page 2'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 2 Content'),
       ),
     );
@@ -384,13 +384,15 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 3'),
+        title: const Text('Page 3'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Page 3 Content'),
       ),
     );

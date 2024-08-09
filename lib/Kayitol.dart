@@ -1,15 +1,14 @@
 import 'package:Hizlanio/girisyap.dart';
 import 'package:Hizlanio/widgets/CustomAppBar.dart';
-import 'package:Hizlanio/widgets/CustomEndDrawer.dart';
+import 'package:Hizlanio/widgets/custom_end_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'Kayitol.dart';
 import 'main.dart';
 import 'dart:math' as math;
 
 class Kayitol extends StatelessWidget {
-  const Kayitol({Key? key}) : super(key: key);
+  const Kayitol({super.key});
 
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -28,7 +27,7 @@ class Kayitol extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final rowHeight = screenHeight / 10;
     final sidePadding = screenWidth / 100;
-    final maxWidth = 1280.0;
+    const maxWidth = 1280.0;
 
     double getResponsiveTextSize() {
       if (screenWidth < 600) {
@@ -42,7 +41,7 @@ class Kayitol extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("images/Arka Plan.png"),
           fit: BoxFit.cover,
@@ -57,7 +56,7 @@ class Kayitol extends StatelessWidget {
               sidePadding: sidePadding,
               screenWidth: screenWidth,
               rowHeight: rowHeight,
-              actions: [],
+              actions: const [],
             ),
           ),
         ),
@@ -93,7 +92,7 @@ class Kayitol extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     IconButton(
-                                      icon: Icon(Icons.arrow_back),
+                                      icon: const Icon(Icons.arrow_back),
                                       iconSize: screenWidth * 0.05,
                                       disabledColor: Colors.white,
                                       color: Colors.white,
@@ -102,7 +101,8 @@ class Kayitol extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AnaSayfa(title: "title")));
+                                                    const AnaSayfa(
+                                                        title: "title")));
                                       },
                                     ),
                                     Text(
@@ -117,12 +117,12 @@ class Kayitol extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Padding(
                                 padding: EdgeInsets.all(screenWidth / 50),
                                 child: Column(
                                   children: [
-                                    TextField(
+                                    const TextField(
                                       decoration: InputDecoration(
                                         labelText: 'Kullanıcı Adı',
                                         labelStyle:
@@ -139,7 +139,7 @@ class Kayitol extends StatelessWidget {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     SizedBox(height: screenHeight / 50),
-                                    TextField(
+                                    const TextField(
                                       decoration: InputDecoration(
                                         labelText: 'E-Posta',
                                         labelStyle:
@@ -156,7 +156,7 @@ class Kayitol extends StatelessWidget {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     SizedBox(height: screenHeight / 50),
-                                    TextField(
+                                    const TextField(
                                       decoration: InputDecoration(
                                         labelText: 'Şifre',
                                         labelStyle:
@@ -178,14 +178,14 @@ class Kayitol extends StatelessWidget {
                                       onPressed: () {
                                         // Giriş yap butonuna basıldığında yapılacak işlemler
                                       },
-                                      child: Text('Kayıt Ol'),
+                                      child: const Text('Kayıt Ol'),
                                     ),
                                     SizedBox(height: screenHeight / 50),
                                     ElevatedButton(
                                       onPressed: () {
                                         signInWithGoogle();
                                       },
-                                      child: Text('Google ile Kayıt Ol'),
+                                      child: const Text('Google ile Kayıt Ol'),
                                     ),
                                     SizedBox(height: screenHeight / 50),
                                     TextButton(
@@ -193,10 +193,11 @@ class Kayitol extends StatelessWidget {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Girisyap()),
+                                              builder: (context) =>
+                                                  const Girisyap()),
                                         );
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         'Zaten bir hesabınız var mı ? Giriş Yap',
                                         style: TextStyle(color: Colors.blue),
                                       ),
@@ -204,7 +205,7 @@ class Kayitol extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Spacer()
+                              const Spacer()
                             ],
                           ),
                         ),

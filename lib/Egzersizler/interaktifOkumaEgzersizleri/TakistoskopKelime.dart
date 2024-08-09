@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:math';
 
 class TakistoskopKelime extends StatefulWidget {
+  const TakistoskopKelime({super.key});
+
   @override
   _TakistoskopKelimeState createState() => _TakistoskopKelimeState();
 }
@@ -11,7 +13,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
   final Random _random = Random();
   final TextEditingController _textEditingController = TextEditingController();
   late int _currentQuestionIndex;
-  List<String> _words = [
+  final List<String> _words = [
     'ELMA',
     'ARMUT',
     'MÜZİK',
@@ -57,7 +59,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
       _correctAnswer = _currentWord; // Save the correct answer
     });
 
-    Timer(Duration(milliseconds: 100), () {
+    Timer(const Duration(milliseconds: 100), () {
       setState(() {
         _currentWord = '';
       });
@@ -85,12 +87,12 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
       context: context,
       barrierDismissible: false, // Dialog dışında tıklanarak kapatılmasın
       builder: (context) {
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.pop(context);
           if (_isGameOver) {
             _showResultsDialog();
           } else {
-            Future.delayed(Duration(milliseconds: 1500), () {
+            Future.delayed(const Duration(milliseconds: 1500), () {
               _currentQuestionIndex++;
               _showNextWord();
             });
@@ -118,10 +120,10 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          title: Text('Gördüğünüz kelimeyi girin'),
+          title: const Text('Gördüğünüz kelimeyi girin'),
           content: TextField(
             controller: _textEditingController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Kelimeyi girin',
             ),
@@ -137,7 +139,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
                 Navigator.pop(context);
                 _checkAnswer();
               },
-              child: Text('Gönder'),
+              child: const Text('Gönder'),
             ),
           ],
         );
@@ -152,11 +154,11 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Bitti'),
+          title: const Text('Oyun Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Toplam Soru Sayısı: 10'),
+              const Text('Toplam Soru Sayısı: 10'),
               Text('Doğru Sayısı: $_correctAnswers'),
               Text('Yanlış Sayısı: $_incorrectAnswers'),
               Text('Başarı Oranı: ${successRate.toStringAsFixed(1)}%'),
@@ -169,16 +171,16 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TakistoskopKelime()));
+                        builder: (context) => const TakistoskopKelime()));
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: Text('Geri Dön'),
+              child: const Text('Geri Dön'),
             ),
           ],
         );
@@ -202,7 +204,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -215,7 +217,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
               height: MediaQuery.of(context).size.height * 0.9,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Column(
@@ -224,7 +226,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
                   if (_currentWord.isNotEmpty)
                     Text(
                       _currentWord,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                       ),
@@ -240,7 +242,7 @@ class _TakistoskopKelimeState extends State<TakistoskopKelime> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: TakistoskopKelime(),
   ));

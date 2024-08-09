@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class Kirmizi extends StatefulWidget {
-  const Kirmizi({Key? key}) : super(key: key);
+  const Kirmizi({super.key});
 
   @override
   _KirmiziState createState() => _KirmiziState();
@@ -47,7 +47,7 @@ class _KirmiziState extends State<Kirmizi> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
             fit: BoxFit.cover,
@@ -60,7 +60,7 @@ class _KirmiziState extends State<Kirmizi> {
               height: containerHeight,
               padding: EdgeInsets.all(screenWidth / 30),
               decoration: BoxDecoration(
-                color: Color(0xFFD5B59C),
+                color: const Color(0xFFD5B59C),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Column(
@@ -81,7 +81,7 @@ class _KirmiziState extends State<Kirmizi> {
                         });
                         _showPauseDialog(context);
                       },
-                      child: Text('Durdur'),
+                      child: const Text('Durdur'),
                     ),
                   ],
                 ],
@@ -144,12 +144,12 @@ class _KirmiziState extends State<Kirmizi> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Container(
-            constraints: BoxConstraints(maxWidth: 400),
-            padding: EdgeInsets.all(16.0),
+            constraints: const BoxConstraints(maxWidth: 400),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     'Bu oyunda, ortada çıkan kelimeleri belirli bir hızda okuyacaksınız.',
                     textAlign: TextAlign.center,
@@ -160,9 +160,9 @@ class _KirmiziState extends State<Kirmizi> {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         DropdownButton<String>(
-                          hint: Text("Bir metin seçin"),
+                          hint: const Text("Bir metin seçin"),
                           value: _selectedTextEntry,
                           items: _textEntries.map((String value) {
                             return DropdownMenuItem<String>(
@@ -176,7 +176,7 @@ class _KirmiziState extends State<Kirmizi> {
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                             'Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
                         Slider(
@@ -184,14 +184,14 @@ class _KirmiziState extends State<Kirmizi> {
                           min: 1.0,
                           max: 5.0,
                           divisions: 4,
-                          label: _workSpeed.toStringAsFixed(1) + 'x',
+                          label: '${_workSpeed.toStringAsFixed(1)}x',
                           onChanged: (value) {
                             setState(() {
                               _workSpeed = value;
                             });
                           },
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text('Punto: ${_fontSize.toInt()}'),
                         Slider(
                           value: _fontSize,
@@ -218,16 +218,16 @@ class _KirmiziState extends State<Kirmizi> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    MetinOkumaEgzersizleri()));
+                                    const MetinOkumaEgzersizleri()));
                       },
-                      child: Text('Geri Dön'),
+                      child: const Text('Geri Dön'),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                         _startWork();
                       },
-                      child: Text('Çalışmaya Başla'),
+                      child: const Text('Çalışmaya Başla'),
                     ),
                   ],
                 ),
@@ -272,22 +272,22 @@ class _KirmiziState extends State<Kirmizi> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Oyun Durdu'),
-          content: Text('Çalışmayı bitir veya devam et?'),
+          title: const Text('Oyun Durdu'),
+          content: const Text('Çalışmayı bitir veya devam et?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _showCompletionDialog();
               },
-              child: Text('Çalışmayı Bitir'),
+              child: const Text('Çalışmayı Bitir'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _resumeWork();
               },
-              child: Text('Devam Et'),
+              child: const Text('Devam Et'),
             ),
           ],
         );
@@ -313,14 +313,14 @@ class _KirmiziState extends State<Kirmizi> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Çalışma Bitti'),
+          title: const Text('Çalışma Bitti'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                   'Toplam Okuma Süresi: ${_totalDuration!.inMinutes.toString().padLeft(2, '0')}:${(_totalDuration!.inSeconds % 60).toString().padLeft(2, '0')} Dakika'),
               Text('Çalışma Hızınız: ${_workSpeed.toStringAsFixed(1)}x'),
-              Text('Açılan Kelime Sayısı: ${_currentWordIndex}')
+              Text('Açılan Kelime Sayısı: $_currentWordIndex')
             ],
           ),
           actions: [
@@ -329,19 +329,19 @@ class _KirmiziState extends State<Kirmizi> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MetinOkumaEgzersizleri()));
+                        builder: (context) => const MetinOkumaEgzersizleri()));
                 setState(() {
                   _isWorking = false;
                 });
               },
-              child: Text('Geri Dön'),
+              child: const Text('Geri Dön'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 _restartWork();
               },
-              child: Text('Tekrar Oyna'),
+              child: const Text('Tekrar Oyna'),
             ),
           ],
         );
@@ -358,7 +358,7 @@ class _KirmiziState extends State<Kirmizi> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: Kirmizi(),
   ));
 }

@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:Hizlanio/hizTesti/hiztesti.dart';
 import 'package:Hizlanio/hizTesti/metinlervesorular.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,7 @@ Widget buildQuestionContainer({
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -38,8 +37,8 @@ Widget buildQuestionContainer({
                           setCurrentQuestionIndex(index);
                         },
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 4),
-                          padding: EdgeInsets.all(8),
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(5),
@@ -65,15 +64,15 @@ Widget buildQuestionContainer({
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     "Soru ${currentQuestionIndex + 1}/${selectedMetin.questions.length}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     selectedMetin.questions[currentQuestionIndex].question,
                     textAlign: TextAlign.center,
@@ -82,7 +81,7 @@ Widget buildQuestionContainer({
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: selectedMetin
@@ -103,8 +102,8 @@ Widget buildQuestionContainer({
                           setUserAnswers(idx as List<int>);
                         },
                         child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
-                          padding: EdgeInsets.all(12),
+                          margin: const EdgeInsets.symmetric(vertical: 8),
+                          padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color:
@@ -117,7 +116,7 @@ Widget buildQuestionContainer({
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                optionLabel + ") ",
+                                "$optionLabel) ",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: min(screenWidth / 20, 18),
@@ -142,7 +141,7 @@ Widget buildQuestionContainer({
                       );
                     }).toList(),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -153,10 +152,10 @@ Widget buildQuestionContainer({
                                     currentQuestionIndex - 1);
                               }
                             : null,
-                        icon: Icon(Icons.arrow_back),
-                        label: Text("Önceki Soru"),
+                        icon: const Icon(Icons.arrow_back),
+                        label: const Text("Önceki Soru"),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 16),
                           backgroundColor: currentQuestionIndex > 0
                               ? Colors.blue
@@ -187,7 +186,7 @@ Widget buildQuestionContainer({
                             showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
-                                title: Text("Uyarı"),
+                                title: const Text("Uyarı"),
                                 content: Text(
                                     "Lütfen tüm soruları cevaplayınız. Eksik sorular: ${unansweredQuestions.join(", ")}"),
                                 actions: [
@@ -195,7 +194,7 @@ Widget buildQuestionContainer({
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text("Tamam"),
+                                    child: const Text("Tamam"),
                                   ),
                                 ],
                               ),
@@ -204,10 +203,10 @@ Widget buildQuestionContainer({
                             submitAnswers();
                           }
                         },
-                        icon: Icon(Icons.check),
-                        label: Text("Testi Bitir"),
+                        icon: const Icon(Icons.check),
+                        label: const Text("Testi Bitir"),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 16),
                           backgroundColor: Colors.green,
                         ),
@@ -220,10 +219,10 @@ Widget buildQuestionContainer({
                                     currentQuestionIndex + 1);
                               }
                             : null,
-                        icon: Icon(Icons.arrow_forward),
-                        label: Text("Sonraki Soru"),
+                        icon: const Icon(Icons.arrow_forward),
+                        label: const Text("Sonraki Soru"),
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 16, horizontal: 16),
                           backgroundColor: currentQuestionIndex <
                                   selectedMetin.questions.length - 1
@@ -233,7 +232,7 @@ Widget buildQuestionContainer({
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
