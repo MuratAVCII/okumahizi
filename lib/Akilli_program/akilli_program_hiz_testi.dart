@@ -1,18 +1,19 @@
 import 'dart:async'; // Zamanlayıcı fonksiyonlar için gerekli kütüphane
 import 'dart:math'; // Rastgele sayı üretimi için kullanılan kütüphane
+import 'package:Hizlanio/Akilli_program/akilli_program_olusmus.dart';
 import 'package:Hizlanio/hizTesti/metinlervesorular.dart'; // Metin ve soruların olduğu dosya
 import 'package:flutter/material.dart'; // Flutter'ın ana yapısı ve bileşenleri
 
 // Ana HizTesti StatefulWidget
-class HizTesti extends StatefulWidget {
-  const HizTesti({super.key});
+class AkilliProgramHizTesti extends StatefulWidget {
+  const AkilliProgramHizTesti({super.key});
 
   @override
-  _HizTestiState createState() =>
-      _HizTestiState(); // State sınıfı oluşturuluyor
+  _AkilliProgramHizTestiState createState() =>
+      _AkilliProgramHizTestiState(); // State sınıfı oluşturuluyor
 }
 
-class _HizTestiState extends State<HizTesti> {
+class _AkilliProgramHizTestiState extends State<AkilliProgramHizTesti> {
   final double _sliderValue = 0.0; // Slider için kullanılacak başlangıç değeri
   late Timer _timer; // Geri sayım için kullanılacak Timer nesnesi
   int counter = 3; // Geri sayım başlangıç değeri (3 saniye)
@@ -125,8 +126,14 @@ class _HizTestiState extends State<HizTesti> {
               onPressed: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop(); // Popup kapanıyor
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AkilliProgramOlusmus(
+                            title: "Oluşmuş",
+                            initialReadingSpeed: readingSpeed)));
               },
-              child: const Text("Tamam"),
+              child: const Text("Akıllı Program Oluştur"),
             ),
           ],
         );

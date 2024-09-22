@@ -1,296 +1,334 @@
-import 'package:Hizlanio/Egzersizler.dart';
-import 'package:Hizlanio/girisyap.dart';
-import 'package:Hizlanio/hizTesti/hizTesti.dart';
-import 'package:Hizlanio/iletisim.dart';
-import 'package:Hizlanio/widgets/CustomAppBar.dart';
-import 'package:Hizlanio/widgets/custom_end_drawer.dart';
-import 'package:Hizlanio/widgets/full_screen_button.dart'; // Import FullScreenButton
-import 'package:flutter/material.dart';
-import 'package:Hizlanio/Kayitol.dart';
-import 'dart:math' as math;
-import 'package:firebase_core/firebase_core.dart';
+import 'package:Hizlanio/Akilli_program/akilli_program_olusmus.dart';
+import 'package:Hizlanio/Egzersizler.dart'; // Egzersizler sayfasını import ediyor
+import 'package:Hizlanio/Akilli_program/akilli_program.dart';
+import 'package:Hizlanio/girisyap.dart'; // Giriş yap sayfasını import ediyor
+import 'package:Hizlanio/hizTesti/hizTesti.dart'; // Hız testi sayfasını import ediyor
+import 'package:Hizlanio/iletisim.dart'; // İletişim sayfasını import ediyor
+import 'package:Hizlanio/widgets/CustomAppBar.dart'; // Özel AppBar widget'ını import ediyor
+import 'package:Hizlanio/widgets/custom_end_drawer.dart'; // Özel end drawer'ı import ediyor
+import 'package:Hizlanio/widgets/full_screen_button.dart'; // FullScreenButton widget'ını import ediyor
+import 'package:flutter/material.dart'; // Flutter'ın ana bileşenlerini import ediyor
+import 'package:Hizlanio/Kayitol.dart'; // Kayıt ol sayfasını import ediyor
+import 'dart:math'
+    as math; // Math kütüphanesi, özellikle ekran boyutu hesaplamaları için kullanılıyor
+import 'package:firebase_core/firebase_core.dart'; // Firebase'i başlatmak için gerekli kütüphane
 
+// Uygulamanın ana fonksiyonu
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Flutter işlemlerini başlatmadan önce gerekli bağlamaları yapar
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(); // Firebase başlatma işlemi
   } catch (e) {
-    print('Firebase başlatma hatası: $e');
+    print(
+        'Firebase başlatma hatası: $e'); // Firebase başlatma hatası durumunda konsola hata mesajı basılıyor
   }
-  runApp(const MyApp());
+  runApp(const MyApp()); // Uygulama başlatılıyor
 }
 
+// Uygulamanın ana widget'ı
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Okuma Hizi',
+      debugShowCheckedModeBanner: false, // Debug banner'ını kaldırıyor
+      title: 'Okuma Hizi', // Uygulama başlığı
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Colors.deepPurple), // Renk teması
+        useMaterial3: true, // Material 3 desteği
       ),
-      home: const AnaSayfa(title: 'Ana Sayfa'),
+      home: const AnaSayfa(title: 'Ana Sayfa'), // Ana sayfa widget'ı yükleniyor
       routes: {
-        '/iletisim': (context) => const Iletisim(),
-        '/girisyap': (context) => const Girisyap(),
-        '/kayitol': (context) => const Kayitol(),
+        '/iletisim': (context) =>
+            const Iletisim(), // İletişim sayfası yönlendirmesi
+        '/girisyap': (context) =>
+            const Girisyap(), // Giriş yap sayfası yönlendirmesi
+        '/kayitol': (context) =>
+            const Kayitol(), // Kayıt ol sayfası yönlendirmesi
       },
     );
   }
 }
 
+// Ana sayfa Stateful widget
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({super.key, required this.title});
 
   final String title;
 
   @override
-  State<AnaSayfa> createState() => _AnaSayfaState();
+  State<AnaSayfa> createState() =>
+      _AnaSayfaState(); // State sınıfı oluşturuluyor
 }
 
+// Ana sayfa state sınıfı
 class _AnaSayfaState extends State<AnaSayfa> {
-  double _sliderValue = 10;
+  double _sliderValue = 10; // Yaş seçimi slider'ının başlangıç değeri
 
   @override
   Widget build(BuildContext context) {
-    Color buttonColor = const Color.fromARGB(255, 48, 73, 174);
+    Color buttonColor = const Color.fromARGB(255, 48, 73, 174); // Buton rengi
 
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final rowHeight = screenHeight / 10;
-    final rowSpacing = screenHeight / 200;
-    final sidePadding = screenWidth / 100;
-    const maxWidth = 1280.0;
+    final screenHeight = MediaQuery.of(context).size.height; // Ekran yüksekliği
+    final screenWidth = MediaQuery.of(context).size.width; // Ekran genişliği
+    final rowHeight = screenHeight / 10; // Satır yüksekliği
+    final rowSpacing = screenHeight / 200; // Satır arası boşluk
+    final sidePadding = screenWidth / 100; // Yan boşluk
+    const maxWidth = 1280.0; // Maksimum genişlik
 
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      width: double.infinity, // Genişlik ekran boyutuna göre ayarlanıyor
+      height: double.infinity, // Yükseklik ekran boyutuna göre ayarlanıyor
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/Arka Plan.png"),
-          // Arka plan görseli
-          fit: BoxFit.cover,
+          image: AssetImage("images/Arka Plan.png"), // Arka plan görseli
+          fit: BoxFit.cover, // Görsel tam ekranı kaplayacak şekilde ayarlanıyor
         ),
       ),
       child: Stack(
+        // Ekran üstüne widget'lar yerleştirilir
         children: [
           Scaffold(
             backgroundColor:
-                Colors.transparent, // Scaffold arka planını transparan yap
+                Colors.transparent, // Scaffold arka planı transparan yapılıyor
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(screenHeight / 10),
+              preferredSize:
+                  Size.fromHeight(screenHeight / 10), // AppBar yüksekliği
               child: CustomAppBar(
-                sidePadding: sidePadding,
-                screenWidth: screenWidth,
-                rowHeight: rowHeight,
-                actions: const [],
+                sidePadding: sidePadding, // Yan boşluk
+                screenWidth: screenWidth, // Ekran genişliği
+                rowHeight: rowHeight, // Satır yüksekliği
+                actions: const [], // AppBar'daki aksiyonlar
               ),
             ),
-            endDrawer: CustomEndDrawer(rowHeight: rowHeight),
+            endDrawer:
+                CustomEndDrawer(rowHeight: rowHeight), // End drawer ekleniyor
             body: SafeArea(
+              // Ekran alanına yerleşiyor
               child: Center(
                 child: Container(
                   width: screenWidth > maxWidth
-                      ? maxWidth
-                      : screenWidth - 2 * sidePadding,
-                  padding: EdgeInsets.symmetric(horizontal: sidePadding),
+                      ? maxWidth // Ekran genişliği maks. genişlikten büyükse sabit genişlik
+                      : screenWidth -
+                          2 * sidePadding, // Aksi durumda ekran genişliği
+                  padding: EdgeInsets.symmetric(
+                      horizontal: sidePadding), // Yan padding
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: screenHeight / 50),
+                      SizedBox(height: screenHeight / 50), // Boşluk
                       // Orta Alan
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.black38,
-                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.black38, // Arka plan yarı transparan
+                            borderRadius: BorderRadius.circular(
+                                20.0), // Köşeleri yuvarlatılmış
                           ),
                           child: SingleChildScrollView(
+                            // Kaydırılabilir içerik
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment
+                                  .center, // Ortaya hizalanmış
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(height: screenHeight / 25), // Boşluk
                                 Text(
-                                  "bİLGİYE HIZ VER",
+                                  "bİLGİYE HIZ VER", // Ana başlık
                                   style: TextStyle(
-                                    fontSize: math.min(screenWidth / 12, 90),
-                                    color: Colors.white,
-                                    fontFamily: 'CustomFont',
+                                    fontSize: math.min(screenWidth / 12,
+                                        90), // Dinamik font boyutu
+                                    color: Colors.white, // Yazı rengi
+                                    fontFamily: 'CustomFont', // Özel font
                                   ),
                                 ),
                                 Text(
-                                  "OKUMA HIZINIZI TEKNOLOJİ İLE BULUŞTURUN",
+                                  "OKUMA HIZINIZI TEKNOLOJİ İLE BULUŞTURUN", // Alt başlık
                                   style: TextStyle(
-                                    fontSize: math.min(screenWidth / 30, 30),
-                                    color: Colors.white,
-                                    fontFamily: 'CustomFont',
+                                    fontSize: math.min(screenWidth / 30,
+                                        30), // Dinamik font boyutu
+                                    color: Colors.white, // Yazı rengi
+                                    fontFamily: 'CustomFont', // Özel font
                                   ),
                                 ),
                                 Text(
-                                  "HIZLI OKUMA PLATFORMU",
+                                  "HIZLI OKUMA PLATFORMU", // Tanımlama metni
                                   style: TextStyle(
-                                    fontSize: math.min(screenWidth / 40, 20),
-                                    color: Colors.white,
-                                    fontFamily: 'CustomFont',
+                                    fontSize: math.min(screenWidth / 40,
+                                        20), // Dinamik font boyutu
+                                    color: Colors.white, // Yazı rengi
+                                    fontFamily: 'CustomFont', // Özel font
                                   ),
                                 ),
-                                SizedBox(height: screenHeight / 50),
+                                SizedBox(height: screenHeight / 50), // Boşluk
                                 // Hız testi Butonu
                                 MouseRegion(
-                                  cursor: SystemMouseCursors.click,
+                                  // Butona tıklanabilir işaretçi efekti
+                                  cursor: SystemMouseCursors
+                                      .click, // İşaretçi değişikliği
                                   child: LayoutBuilder(
+                                    // Dinamik buton genişliği hesaplama
                                     builder: (BuildContext context,
                                         BoxConstraints constraints) {
                                       double buttonWidth =
                                           constraints.maxWidth < 100
-                                              ? 100
-                                              : constraints.maxWidth * 0.25;
+                                              ? 100 // Min genişlik
+                                              : constraints.maxWidth *
+                                                  0.25; // Genişliğin %25'i
 
                                       return IntrinsicWidth(
+                                        // Dinamik buton genişliği
                                         child: ConstrainedBox(
                                           constraints: BoxConstraints(
-                                            minWidth: buttonWidth,
-                                            maxWidth: buttonWidth,
+                                            minWidth:
+                                                buttonWidth, // Min genişlik
+                                            maxWidth:
+                                                buttonWidth, // Maks genişlik
                                           ),
                                           child: ElevatedButton(
                                             onPressed: () {
+                                              // Butona tıklandığında alt panel açılıyor
                                               showModalBottomSheet(
                                                 context: context,
                                                 builder:
                                                     (BuildContext context) {
                                                   return StatefulBuilder(
+                                                    // Alt panel state yönetimi
                                                     builder: (BuildContext
                                                             context,
                                                         StateSetter setState) {
                                                       return Container(
-                                                        height:
-                                                            screenHeight / 3,
+                                                        height: screenHeight /
+                                                            3, // Alt panel yüksekliği
                                                         decoration:
                                                             const BoxDecoration(
-                                                          color: Colors.green,
+                                                          color: Colors
+                                                              .green, // Alt panel arka planı
                                                           borderRadius:
                                                               BorderRadius
                                                                   .vertical(
-                                                            top:
-                                                                Radius.circular(
-                                                                    20.0),
+                                                            top: Radius.circular(
+                                                                20.0), // Yuvarlak üst köşeler
                                                           ),
                                                         ),
                                                         child: Column(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .spaceEvenly,
+                                                                  .spaceEvenly, // İçerik arası boşluklar
                                                           children: [
-                                                            const Spacer(),
+                                                            const Spacer(), // Boşluk
                                                             Center(
                                                               child: Container(
-                                                                width:
-                                                                    screenWidth /
-                                                                        10,
-                                                                height: 5,
+                                                                width: screenWidth /
+                                                                    10, // Üstteki beyaz çizgi genişliği
+                                                                height:
+                                                                    5, // Beyaz çizgi yüksekliği
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color: Colors
-                                                                      .white,
+                                                                      .white, // Çizgi rengi
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              4),
+                                                                              4), // Çizgi köşeleri yuvarlatılıyor
                                                                 ),
                                                               ),
                                                             ),
                                                             Text(
-                                                              "Doğru ölçüm yapabilmek için yaşınızı belirtmeniz gerekiyor.",
+                                                              "Doğru ölçüm yapabilmek için yaşınızı belirtmeniz gerekiyor.", // Alt panel metni
                                                               style: TextStyle(
                                                                 color: Colors
-                                                                    .white,
+                                                                    .white, // Yazı rengi
                                                                 fontSize: math.min(
                                                                     screenHeight /
                                                                         40,
-                                                                    36),
+                                                                    36), // Dinamik font boyutu
                                                               ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
+                                                              textAlign: TextAlign
+                                                                  .center, // Yazı ortalanıyor
                                                             ),
                                                             SliderTheme(
+                                                              // Yaş seçimi slider teması
                                                               data: SliderTheme
                                                                       .of(context)
                                                                   .copyWith(
                                                                 valueIndicatorTextStyle:
                                                                     const TextStyle(
                                                                   color: Colors
-                                                                      .green, // Aktif etiketin (label) yazı rengi
+                                                                      .green, // Etiket yazı rengi
                                                                 ),
                                                                 valueIndicatorColor:
                                                                     Colors
-                                                                        .blue, // Aktif etiketin arka plan rengi
+                                                                        .blue, // Etiket arka plan rengi
                                                               ),
                                                               child: Slider(
+                                                                // Yaş slider'ı
                                                                 value:
-                                                                    _sliderValue,
-                                                                min: 10,
-                                                                max: 20,
-                                                                divisions: 10,
+                                                                    _sliderValue, // Slider'ın mevcut değeri
+                                                                min:
+                                                                    10, // Minimum yaş
+                                                                max:
+                                                                    20, // Maksimum yaş
+                                                                divisions:
+                                                                    10, // Bölümler
                                                                 label: _sliderValue
                                                                             .round() >
                                                                         19
-                                                                    ? "20+"
+                                                                    ? "20+" // 20'den büyükse "20+" göster
                                                                     : _sliderValue
                                                                         .round()
-                                                                        .toString(),
-                                                                activeColor:
-                                                                    Colors
-                                                                        .white,
+                                                                        .toString(), // Diğer durumlarda yaş göster
+                                                                activeColor: Colors
+                                                                    .white, // Aktif slider rengi
                                                                 inactiveColor:
                                                                     Colors
-                                                                        .white,
+                                                                        .white, // Pasif slider rengi
                                                                 onChanged:
                                                                     (double
                                                                         value) {
                                                                   setState(() {
                                                                     _sliderValue =
-                                                                        value;
+                                                                        value; // Slider değeri güncelleniyor
                                                                   });
                                                                 },
                                                               ),
                                                             ),
                                                             Text(
-                                                              'Yaşınız: ${_sliderValue.round() > 19 ? "20+" : _sliderValue.round()}',
+                                                              'Yaşınız: ${_sliderValue.round() > 19 ? "20+" : _sliderValue.round()}', // Yaş gösterimi
                                                               style: TextStyle(
                                                                 fontSize:
                                                                     screenHeight /
-                                                                        30,
+                                                                        30, // Dinamik font boyutu
                                                                 color: Colors
-                                                                    .white,
+                                                                    .white, // Yazı rengi
                                                               ),
                                                             ),
-                                                            const Spacer(),
+                                                            const Spacer(), // Boşluk
                                                             ElevatedButton(
                                                               onPressed: () {
+                                                                // "Hız ölçümüne başla" butonu
                                                                 Navigator.pop(
-                                                                    context);
+                                                                    context); // Alt paneli kapatıyor
                                                                 Navigator.push(
                                                                   context,
                                                                   MaterialPageRoute(
                                                                     builder:
                                                                         (context) =>
-                                                                            const HizTesti(),
+                                                                            const HizTesti(), // Hız testi sayfasına yönlendirme
                                                                   ),
                                                                 );
                                                               },
                                                               child: const Text(
-                                                                "Hız ölçümüne başla",
+                                                                "Hız ölçümüne başla", // Buton metni
                                                                 style: TextStyle(
                                                                     color: Colors
-                                                                        .green),
+                                                                        .green), // Yazı rengi
                                                               ),
                                                             ),
-                                                            const Spacer(),
+                                                            const Spacer(), // Boşluk
                                                           ],
                                                         ),
                                                       );
@@ -301,15 +339,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                             },
                                             // Hız Testi Butonu
                                             style: ButtonStyle(
+                                              // Buton stil ayarları
                                               backgroundColor:
                                                   MaterialStateProperty
                                                       .resolveWith<Color>(
                                                 (Set<MaterialState> states) {
                                                   if (states.contains(
                                                       MaterialState.hovered)) {
-                                                    return Colors.greenAccent;
+                                                    return Colors
+                                                        .greenAccent; // Hover durumunda yeşil renk
                                                   }
-                                                  return Colors.green;
+                                                  return Colors
+                                                      .green; // Varsayılan yeşil renk
                                                 },
                                               ),
                                               side: MaterialStateProperty
@@ -319,34 +360,40 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                                       MaterialState.hovered)) {
                                                     return const BorderSide(
                                                         color: Colors.white,
-                                                        width: 2);
+                                                        width:
+                                                            2); // Hover durumunda beyaz kenarlık
                                                   }
-                                                  return BorderSide.none;
+                                                  return BorderSide
+                                                      .none; // Normal durumda kenarlık yok
                                                 },
                                               ),
                                               elevation:
-                                                  MaterialStateProperty.all(4),
+                                                  MaterialStateProperty.all(
+                                                      4), // Buton yüksekliği
                                               shape: MaterialStateProperty.all(
                                                 RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          16.0),
+                                                          16.0), // Buton köşeleri yuvarlatılıyor
                                                 ),
                                               ),
                                             ),
                                             child: Container(
                                               padding: EdgeInsets.symmetric(
-                                                  vertical:
-                                                      screenHeight * 0.02),
+                                                  vertical: screenHeight *
+                                                      0.02), // Buton yüksekliği ayarlanıyor
                                               child: const FittedBox(
+                                                // İç metni ölçeklendiriyor
                                                 fit: BoxFit.scaleDown,
                                                 child: Text(
-                                                  'HIZ TESTİ',
+                                                  'HIZ TESTİ', // Buton metni
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 30,
-                                                    fontFamily: 'CustomFont',
+                                                    color: Colors
+                                                        .white, // Yazı rengi
+                                                    fontSize: 30, // Yazı boyutu
+                                                    fontFamily:
+                                                        'CustomFont', // Özel font
                                                   ),
                                                 ),
                                               ),
@@ -357,19 +404,21 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                     },
                                   ),
                                 ),
-                                SizedBox(height: screenHeight / 50),
+                                SizedBox(height: screenHeight / 50), // Boşluk
                                 // Text Başlık
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0),
+                                      horizontal: 20.0), // Yan boşluk
                                   child: Text(
-                                    "Hızlı Okuma ve Anlama Becerilerinizi Geliştirin !",
-                                    textAlign: TextAlign.center,
+                                    "Hızlı Okuma ve Anlama Becerilerinizi Geliştirin !", // Başlık metni
+                                    textAlign:
+                                        TextAlign.center, // Yazı ortalanıyor
                                     style: TextStyle(
-                                      fontSize: math.min(screenWidth / 30, 30),
-                                      color: Colors.blueAccent,
-                                      fontFamily: "Arial",
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: math.min(screenWidth / 30,
+                                          30), // Dinamik font boyutu
+                                      color: Colors.blueAccent, // Yazı rengi
+                                      fontFamily: "Arial", // Font tipi
+                                      fontWeight: FontWeight.bold, // Kalın font
                                     ),
                                   ),
                                 ),
@@ -378,16 +427,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                 Center(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
+                                        horizontal: 20.0), // Yan boşluk
                                     child: Text(
-                                      "HIZLANIO, okuma hızınızı artırmak ve okuduğunuzu daha hızlı kavramak için özel olarak tasarlanmış bir platformdur. HIZLANIO, kullanıcıların okuma becerilerini ölçmek, geliştirmek ve optimize etmek için güçlü bir araç seti sunar.",
-                                      textAlign: TextAlign.center,
+                                      "HIZLANIO, okuma hızınızı artırmak ve okuduğunuzu daha hızlı kavramak için özel olarak tasarlanmış bir platformdur. HIZLANIO, kullanıcıların okuma becerilerini ölçmek, geliştirmek ve optimize etmek için güçlü bir araç seti sunar.", // Açıklama metni
+                                      textAlign:
+                                          TextAlign.center, // Yazı ortalanıyor
                                       style: TextStyle(
-                                        fontSize:
-                                            math.min(screenWidth / 40, 20),
-                                        color: Colors.white,
-                                        fontFamily: "Arial",
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: math.min(screenWidth / 40,
+                                            20), // Dinamik font boyutu
+                                        color: Colors.white, // Yazı rengi
+                                        fontFamily: "Arial", // Font tipi
+                                        fontWeight:
+                                            FontWeight.bold, // Kalın font
                                       ),
                                     ),
                                   ),
@@ -395,14 +446,17 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                 // Text Button
                                 Center(
                                   child: TextButton(
-                                    onPressed: () {},
+                                    // Bilgi butonu
+                                    onPressed:
+                                        () {}, // Tıklanma olayı henüz tanımlanmamış
                                     child: Text(
-                                      '"Hizlanio" hakkında daha fazla bilgi almak için burayı tıklayın.',
+                                      '"Hizlanio" hakkında daha fazla bilgi almak için burayı tıklayın.', // Buton metni
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize:
-                                            math.min(screenWidth / 40, 20),
-                                        color: Colors.orange,
+                                        fontWeight:
+                                            FontWeight.bold, // Kalın font
+                                        fontSize: math.min(screenWidth / 40,
+                                            20), // Dinamik font boyutu
+                                        color: Colors.orange, // Yazı rengi
                                       ),
                                     ),
                                   ),
@@ -412,36 +466,43 @@ class _AnaSayfaState extends State<AnaSayfa> {
                           ),
                         ),
                       ),
-                      SizedBox(height: screenHeight / 50),
+                      SizedBox(height: screenHeight / 50), // Boşluk
                       // Alt alan
                       SizedBox(
-                        height: screenHeight / 10,
+                        height: screenHeight / 10, // Alt alan yüksekliği
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment
+                              .spaceEvenly, // Eşit boşluklarla dağıtılmış butonlar
                           children: [
                             // Egzersizler Butonu
                             Expanded(
                               child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
+                                // Egzersizler butonuna tıklanabilir işaretçi efekti
+                                cursor: SystemMouseCursors
+                                    .click, // İşaretçi değişikliği
                                 child: ElevatedButton(
                                   onPressed: () {
+                                    // Butona tıklandığında sayfa yönlendirmesi
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Egzersizler()),
+                                              const Egzersizler()), // Egzersizler sayfasına yönlendirme
                                     );
-                                    print("Egzersizler Butonuna Basıldı");
+                                    print(
+                                        "Egzersizler Butonuna Basıldı"); // Konsola basım mesajı
                                   },
                                   style: ButtonStyle(
+                                    // Buton stil ayarları
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.hovered)) {
-                                          return Colors.blueAccent;
+                                          return Colors
+                                              .blueAccent; // Hover durumunda mavi renk
                                         }
-                                        return buttonColor;
+                                        return buttonColor; // Normal durumda varsayılan renk
                                       },
                                     ),
                                     side: MaterialStateProperty.resolveWith<
@@ -450,30 +511,37 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                         if (states
                                             .contains(MaterialState.hovered)) {
                                           return const BorderSide(
-                                              color: Colors.white, width: 2);
+                                              color: Colors.white,
+                                              width:
+                                                  2); // Hover durumunda beyaz kenarlık
                                         }
-                                        return BorderSide.none;
+                                        return BorderSide
+                                            .none; // Normal durumda kenarlık yok
                                       },
                                     ),
-                                    elevation: MaterialStateProperty.all(4),
+                                    elevation: MaterialStateProperty.all(
+                                        4), // Buton yüksekliği
                                     shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
+                                        borderRadius: BorderRadius.circular(
+                                            16.0), // Buton köşeleri yuvarlatılıyor
                                       ),
                                     ),
                                   ),
                                   child: SizedBox(
-                                    height: screenHeight * 0.08,
+                                    height: screenHeight *
+                                        0.08, // Buton yüksekliği ayarlanıyor
                                     child: const Center(
                                       child: FittedBox(
+                                        // İç metni ölçeklendiriyor
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          'EGZERSİZLER',
+                                          'EGZERSİZLER', // Buton metni
                                           style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 30,
-                                            fontFamily: 'CustomFont',
+                                            color: Colors.white, // Yazı rengi
+                                            fontSize: 30, // Yazı boyutu
+                                            fontFamily:
+                                                'CustomFont', // Özel font
                                           ),
                                         ),
                                       ),
@@ -488,21 +556,34 @@ class _AnaSayfaState extends State<AnaSayfa> {
                             // Akıllı Program Butonu
                             Expanded(
                               child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
+                                // Akıllı Program butonuna tıklanabilir işaretçi efekti
+                                cursor: SystemMouseCursors
+                                    .click, // İşaretçi değişikliği
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Akıllı Program butonuna basıldığında yapılacak işlemler
-                                    print("Akıllı Program Butonuna Basıldı");
+                                    // Butona tıklandığında yapılacak işlemler
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const AkilliProgram(
+                                                title: 'AkilliProgram',
+                                              )), // Egzersizler sayfasına yönlendirme
+                                    );
+                                    print(
+                                        "Akıllı Program Butonuna Basıldı"); // Konsola basım mesajı
                                   },
                                   style: ButtonStyle(
+                                    // Buton stil ayarları
                                     backgroundColor: MaterialStateProperty
                                         .resolveWith<Color>(
                                       (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.hovered)) {
-                                          return Colors.blueAccent;
+                                          return Colors
+                                              .blueAccent; // Hover durumunda mavi renk
                                         }
-                                        return buttonColor;
+                                        return buttonColor; // Normal durumda varsayılan renk
                                       },
                                     ),
                                     side: MaterialStateProperty.resolveWith<
@@ -511,31 +592,39 @@ class _AnaSayfaState extends State<AnaSayfa> {
                                         if (states
                                             .contains(MaterialState.hovered)) {
                                           return const BorderSide(
-                                              color: Colors.white, width: 2);
+                                              color: Colors.white,
+                                              width:
+                                                  2); // Hover durumunda beyaz kenarlık
                                         }
-                                        return BorderSide.none;
+                                        return BorderSide
+                                            .none; // Normal durumda kenarlık yok
                                       },
                                     ),
-                                    elevation: MaterialStateProperty.all(4),
+                                    elevation: MaterialStateProperty.all(
+                                        4), // Buton yüksekliği
                                     shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
+                                        borderRadius: BorderRadius.circular(
+                                            16.0), // Buton köşeleri yuvarlatılıyor
                                       ),
                                     ),
                                   ),
                                   child: SizedBox(
-                                    height: screenHeight * 0.08,
+                                    height: screenHeight *
+                                        0.08, // Buton yüksekliği ayarlanıyor
                                     child: const Center(
                                       child: FittedBox(
+                                        // İç metni ölçeklendiriyor
                                         fit: BoxFit.scaleDown,
                                         child: Text(
-                                          'Akıllı Program',
-                                          textAlign: TextAlign.center,
+                                          'Akıllı Program', // Buton metni
+                                          textAlign: TextAlign
+                                              .center, // Yazı ortalanıyor
                                           style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'CustomFont',
-                                            fontSize: 30,
+                                            color: Colors.white, // Yazı rengi
+                                            fontFamily:
+                                                'CustomFont', // Özel font
+                                            fontSize: 30, // Yazı boyutu
                                           ),
                                         ),
                                       ),
@@ -547,7 +636,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                           ],
                         ),
                       ),
-                      SizedBox(height: screenHeight / 50),
+                      SizedBox(height: screenHeight / 50), // Boşluk
                     ],
                   ),
                 ),
@@ -558,7 +647,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
           const Positioned(
             top: 100,
             right: 0,
-            child: FullScreenButton(),
+            child: FullScreenButton(), // Full ekran butonu
           ),
         ],
       ),

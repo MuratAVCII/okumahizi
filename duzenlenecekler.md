@@ -1,0 +1,1 @@
+takistoskopa çıkışlar ekleencek
