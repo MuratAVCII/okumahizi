@@ -123,6 +123,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -286,6 +287,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Oyun Durdu'),
@@ -327,6 +329,7 @@ class _AcilanMetinState extends State<AcilanMetin> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Çalışma Bitti'),

@@ -61,6 +61,7 @@ class _BoyananKelimelerState extends State<BoyananKelimeler> {
   void _showSettingsDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (BuildContext context) {
         return WillPopScope(
           onWillPop: () async {
@@ -246,6 +247,7 @@ class _GamePageState extends State<GamePage> {
     _stopBackgroundTimer();
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Oyun Durdu'),
@@ -279,6 +281,7 @@ class _GamePageState extends State<GamePage> {
   void _showSummaryDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Çalışma Tamamlandı'),

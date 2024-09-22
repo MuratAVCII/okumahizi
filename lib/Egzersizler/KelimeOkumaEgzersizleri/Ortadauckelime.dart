@@ -157,6 +157,7 @@ class _OrtadauckelimeState extends State<Ortadauckelime> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -290,6 +291,7 @@ class _OrtadauckelimeState extends State<Ortadauckelime> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -346,6 +348,7 @@ class _OrtadauckelimeState extends State<Ortadauckelime> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(

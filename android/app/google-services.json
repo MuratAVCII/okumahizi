@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "359072128374",
-    "project_id": "okumahizi",
-    "storage_bucket": "okumahizi.appspot.com"
+    "project_number": "237983793912",
+    "project_id": "okumahizi-5ed4a",
+    "storage_bucket": "okumahizi-5ed4a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:359072128374:android:12af12ac73086bbe69ae57",
+        "mobilesdk_app_id": "1:237983793912:android:0efe50aff47cbf3e10f10d",
         "android_client_info": {
-          "package_name": "com.example.deneme3"
+          "package_name": "com.okumahizi"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBMe03WBJ0gul__HmFZqkxx5YtKe8zPjcs"
+          "current_key": "AIzaSyDITyVpMTFlHfVMM3TwdY4KRsrv7LPpLpg"
         }
       ],
       "services": {

@@ -138,6 +138,7 @@ class _KirmiziState extends State<Kirmizi> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -270,6 +271,7 @@ class _KirmiziState extends State<Kirmizi> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Oyun Durdu'),
@@ -311,6 +313,7 @@ class _KirmiziState extends State<Kirmizi> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Çalışma Bitti'),

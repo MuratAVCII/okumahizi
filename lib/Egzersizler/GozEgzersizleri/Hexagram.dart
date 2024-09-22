@@ -56,6 +56,7 @@ class _HexaGramState extends State<HexaGram> {
                 children: [
                   Expanded(
                     child: Container(
+                      margin: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                         color: pageColor,
                         borderRadius: BorderRadius.circular(20.0),
@@ -112,6 +113,7 @@ class _HexaGramState extends State<HexaGram> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -274,6 +276,7 @@ class _HexaGramState extends State<HexaGram> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -332,6 +335,7 @@ class _HexaGramState extends State<HexaGram> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(

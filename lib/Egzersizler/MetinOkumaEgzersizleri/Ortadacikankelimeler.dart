@@ -112,6 +112,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -258,6 +259,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Oyun Durdu'),
@@ -299,6 +301,7 @@ class _OrtadaCikanKelimeState extends State<OrtadaCikanKelime> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Çalışma Bitti'),

@@ -29,6 +29,7 @@ class _TakistoskopHarfState extends State<TakistoskopHarf> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         double difficulty = 1.0; // Default difficulty level: Kolay
         return StatefulBuilder(

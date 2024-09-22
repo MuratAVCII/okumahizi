@@ -43,6 +43,7 @@ class _NesneTakipRandomState extends State<NesneTakipRandom> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
+        margin: const EdgeInsets.all(16.0),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
@@ -112,6 +113,7 @@ class _NesneTakipRandomState extends State<NesneTakipRandom> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -248,6 +250,7 @@ class _NesneTakipRandomState extends State<NesneTakipRandom> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -306,6 +309,7 @@ class _NesneTakipRandomState extends State<NesneTakipRandom> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(

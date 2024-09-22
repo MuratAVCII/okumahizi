@@ -39,6 +39,7 @@ class _FiveStarState extends State<FiveStar> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
+        margin: const EdgeInsets.all(16.0),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/Arka Plan.png"),
@@ -112,6 +113,7 @@ class _FiveStarState extends State<FiveStar> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -274,6 +276,7 @@ class _FiveStarState extends State<FiveStar> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -332,6 +335,7 @@ class _FiveStarState extends State<FiveStar> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(

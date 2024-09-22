@@ -57,6 +57,7 @@ class _SixPointState extends State<SixPoint> {
                   children: [
                     Expanded(
                       child: Container(
+                        margin: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           color: pageColor,
                           borderRadius: BorderRadius.circular(20.0),
@@ -114,6 +115,7 @@ class _SixPointState extends State<SixPoint> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -276,6 +278,7 @@ class _SixPointState extends State<SixPoint> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -334,6 +337,7 @@ class _SixPointState extends State<SixPoint> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(

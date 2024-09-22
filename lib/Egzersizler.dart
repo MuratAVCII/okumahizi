@@ -18,6 +18,7 @@ class Egzersizler extends StatelessWidget {
     final rowHeight = screenHeight / 10;
     final sidePadding = screenWidth / 100;
     const maxWidth = 1280.0;
+    // ignore: unused_local_variable
     Color buttonColor = const Color.fromARGB(255, 48, 73, 174);
 
     double getResponsiveTextSize() {

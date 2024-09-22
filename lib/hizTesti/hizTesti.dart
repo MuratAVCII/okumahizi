@@ -197,6 +197,7 @@ class _HizTestiState extends State<HizTesti> {
                   if (showText)
                     Expanded(
                       child: Container(
+                        margin: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           color: pageColor,
                           borderRadius: BorderRadius.circular(20.0),
@@ -231,8 +232,7 @@ class _HizTestiState extends State<HizTesti> {
                     Expanded(
                       child: Center(
                         child: Container(
-                          width: screenWidth * 0.8,
-                          height: screenHeight * 0.8,
+                      margin: const EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             color: pageColor,
                             borderRadius: BorderRadius.circular(20.0),

@@ -117,6 +117,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
   void _showSettingsDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
@@ -280,6 +281,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
   void _showPauseDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Oyun Durdu'),
@@ -321,6 +323,7 @@ class _RastgeleCikanKelimeState extends State<RastgeleCikanKelime> {
 
     showDialog(
       context: context,
+      barrierDismissible: false, // Dialog dışına tıklayınca kapanmayı engeller
       builder: (context) {
         return AlertDialog(
           title: const Text('Çalışma Bitti'),

@@ -7,6 +7,8 @@ import 'package:Hizlanio/Egzersizler/MetinOkumaEgzersizleri/KaybolanKelimeler.da
 import 'package:Hizlanio/Egzersizler/MetinOkumaEgzersizleri/RastgeleKelime.dart';
 import 'package:Hizlanio/Egzersizler/MetinOkumaEgzersizleri/VurgulananKelimeler.dart';
 import 'package:Hizlanio/main.dart';
+import 'package:Hizlanio/widgets/CustomAppBar.dart';
+import 'package:Hizlanio/widgets/custom_end_drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -21,6 +23,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
     const maxWidth = 1280.0;
     final minButtonWidth = screenWidth / 8;
     final minButtonHeight = screenHeight / 16;
+    final rowHeight = screenHeight / 10;
 
     int crossAxisCount = screenWidth < 700
         ? 2
@@ -84,17 +87,30 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
       // Diğer butonlar için benzer yapı devam eder...
     ];
 
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/Arka Plan.png"),
-            fit: BoxFit.cover,
-          ),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/Arka Plan.png"),
+          fit: BoxFit.cover,
         ),
-        child: SafeArea(
+      ),
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(screenHeight / 10),
+              child: CustomAppBar(
+                sidePadding: sidePadding,
+                screenWidth: screenWidth,
+                rowHeight: rowHeight,
+                actions: const [],
+              ),
+            ),
+            endDrawer: CustomEndDrawer(rowHeight: rowHeight),
+            body: SafeArea(
           child: Center(
             child: Padding(
               padding: EdgeInsets.only(top: sidePadding),
@@ -106,100 +122,6 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: screenHeight / 10,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(left: sidePadding),
-                            child: Image.asset(
-                              'images/Group 1774.png',
-                              height: screenHeight / 10,
-                            ),
-                          ),
-                          Visibility(
-                            visible: screenWidth > 600,
-                            child: Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const AnaSayfa(title: "title")));
-                                    },
-                                    child: Text("Anasayfa",
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                40,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
-                                  ),
-                                  SizedBox(width: screenWidth * 0.01),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text("İletişim",
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                40,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
-                                  ),
-                                  SizedBox(width: screenWidth * 0.01),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text("Premium",
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                40,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.orange)),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: screenWidth * 0.01),
-                            child: DropdownButton<String>(
-                              icon: const Icon(Icons.arrow_drop_down),
-                              iconEnabledColor: Colors.white,
-                              underline: const SizedBox(),
-                              items: <String>['Giriş yap', 'Kayıt ol']
-                                  .map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                              onChanged: (_) {},
-                              hint: Row(
-                                children: [
-                                  Text(
-                                    "Giriş yap",
-                                    style: TextStyle(
-                                        fontSize:
-                                            math.min(screenWidth / 25, 36),
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                     SizedBox(height: screenHeight / 50),
                     Expanded(
                       child: Padding(
@@ -360,7 +282,7 @@ class MetinOkumaEgzersizleri extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      ),],),
     );
   }
 }
